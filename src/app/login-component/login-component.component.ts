@@ -10,13 +10,13 @@ import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
 })
 export class LoginComponentComponent implements OnInit {
 
-  loginform = new FormGroup({
+  loginForm = new FormGroup({
     usuario : new FormControl('', Validators.required),
     password : new FormControl('', Validators.required)
   })
 
-  @ViewChild("cajamail") cajamail! : ElementRef;
-  @ViewChild("cajapassword") cajapassword! : ElementRef;
+  @ViewChild("email") email! : ElementRef;
+  @ViewChild("password") password! : ElementRef;
 
   constructor(private auth : AuthFirebaseService, private router: Router) { }
 
@@ -24,9 +24,9 @@ export class LoginComponentComponent implements OnInit {
   }
 
   logIn():void{
-    var mail = this.cajamail.nativeElement.value;
-    var contra = this.cajapassword.nativeElement.value;
-    this.auth.login(mail, contra).then(res=> {
+    var email = this.email.nativeElement.value;
+    var contra = this.password.nativeElement.value;
+    this.auth.login(email, contra).then(res=> {
       console.log(res);
       this.router.navigate(['perfil']);
     });

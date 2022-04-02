@@ -1,22 +1,48 @@
-<form #formLogIn="ngForm">
-  <label>Email</label>
-  <input type="email" name="cajamail" #cajamail placeholder="example@example.com" class="form-control"/>
-  <br />
-  <label>Contraseña</label>
-  <input
-    type="password"
-    name="cajapassword"
-    #cajapassword
-    placeholder="123456"
-    class="form-control"
-    minlength="6"
-    maxlength="20"
-    pattern="[A-Za-z0-9]{6,20}"
-  />
-  <br />
-  <button class="btn btn-success" (click)="logIn()">Acceder</button>
-  &nbsp;
-  <button class="btn btn-danger" (click)="logInGoogle()">
-    Accede con Google
-  </button>
-</form>
+<div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3>Iniciar sesión</h3>
+        <div class="d-flex justify-content-end social_icon">
+          <span><i class="fa fa-facebook-square"></i></span>
+          <span><i class="fa fa-google-plus-square"></i></span>
+          <span><i class="fa-facebook-square"></i></span>
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="loginForm" #formLogIn="ngForm">
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input type="email" name="email" class="form-control" #email placeholder="example@gmail.com" required />
+          </div>
+          <br>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+            </div>
+            <input type="password" name="password" #password class="form-control" placeholder="password" minlength="6"
+              maxlength="20" pattern="[A-Za-z0-9]{6,20}" required />
+          </div>
+          <br>
+          <div class="form-group">
+            <button (click)="logIn()" class="btn float-left login_btn">Acceder</button>
+            <button (click)="logInGoogle()" class="btn float-right btn-danger">
+              Google
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-center links">
+          ¿No tienes cuenta?<a [routerLink]="'/registro'">Registrate</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- El link de bootstrap choca con el header, reportar en la daily-->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

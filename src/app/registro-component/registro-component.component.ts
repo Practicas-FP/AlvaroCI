@@ -8,19 +8,19 @@ import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
   styleUrls: ['./registro-component.component.css'],
 })
 export class RegistroComponentComponent implements OnInit {
-  @ViewChild('cajamail') cajamail!: ElementRef;
-  @ViewChild('cajapassword') cajapassword!: ElementRef;
+  @ViewChild('email') email!: ElementRef;
+  @ViewChild('password') password!: ElementRef;
 
   constructor(private auth: AuthFirebaseService, private router: Router) {}
 
   ngOnInit(): void {}
 
   registro(): void {
-    var mail = this.cajamail.nativeElement.value;
-    var contra = this.cajapassword.nativeElement.value;
-    this.auth.registro(mail, contra).then((res) => {
+    var email = this.email.nativeElement.value;
+    var contra = this.password.nativeElement.value;
+    this.auth.registro(email, contra).then((res) => {
       console.log(res);
-      this.router.navigate(['registro']);
+      this.router.navigate(['perfil']);
     });
   }
 

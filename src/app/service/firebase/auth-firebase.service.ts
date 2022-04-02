@@ -11,7 +11,7 @@ export class AuthFirebaseService {
     try {
       return await this.auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
-      alert('No se ha podido realizar esta operación. Error: ' + error);
+      alert('No se ha podido realizar esta operación');
       console.log('No se ha podido realizar esta operación. Error: ' + error);
       return null;
     }
@@ -29,7 +29,7 @@ export class AuthFirebaseService {
     try {
       return await this.auth.createUserWithEmailAndPassword(email, password);
     } catch (error) {
-      alert('No se ha podido realizar el registro de usuario. Error: ' + error);
+      alert('No se ha podido realizar el registro de usuario.');
       console.log('No se ha podido realizar el registro de usuario. Error: ' + error);
       return null;
     }
