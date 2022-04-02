@@ -1,0 +1,22 @@
+<form #formLogIn="ngForm">
+  <label>Email</label>
+  <input type="email" name="cajamail" #cajamail placeholder="example@example.com" class="form-control"/>
+  <br />
+  <label>Contraseña</label>
+  <input
+    type="password"
+    name="cajapassword"
+    #cajapassword
+    placeholder="123456"
+    class="form-control"
+    minlength="6"
+    maxlength="20"
+    pattern="[A-Za-z0-9]{6,20}"
+  />
+  <br />
+  <button class="btn btn-success" (click)="logIn()">Acceder</button>
+  &nbsp;
+  <button class="btn btn-danger" (click)="logInGoogle()">
+    Accede con Google
+  </button>
+</form>
