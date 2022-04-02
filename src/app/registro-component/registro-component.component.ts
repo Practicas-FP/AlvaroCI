@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthFirebaseService } from '../auth-firebase.service';
+import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
 
 @Component({
   selector: 'app-registro-component',
@@ -20,7 +20,7 @@ export class RegistroComponentComponent implements OnInit {
     var contra = this.cajapassword.nativeElement.value;
     this.auth.registro(mail, contra).then((res) => {
       console.log(res);
-      this.router.navigate(['perfil']);
+      this.router.navigate(['registro']);
     });
   }
 

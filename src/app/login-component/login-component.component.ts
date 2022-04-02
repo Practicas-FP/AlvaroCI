@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthFirebaseService } from '../auth-firebase.service';
+import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
 
 @Component({
   selector: 'app-login-component',
@@ -8,6 +9,11 @@ import { AuthFirebaseService } from '../auth-firebase.service';
   styleUrls: ['./login-component.component.css']
 })
 export class LoginComponentComponent implements OnInit {
+
+  loginform = new FormGroup({
+    usuario : new FormControl('', Validators.required),
+    password : new FormControl('', Validators.required)
+  })
 
   @ViewChild("cajamail") cajamail! : ElementRef;
   @ViewChild("cajapassword") cajapassword! : ElementRef;

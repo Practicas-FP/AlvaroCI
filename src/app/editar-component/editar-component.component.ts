@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthFirebaseService } from '../auth-firebase.service';
+import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
 
 @Component({
   selector: 'app-editar-component',

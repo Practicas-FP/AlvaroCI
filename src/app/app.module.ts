@@ -4,12 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
 import { ErrorPersonalizadoComponentComponent } from './error-personalizado-component/error-personalizado-component.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AuthFirebaseService } from './auth-firebase.service';
+import { AuthFirebaseService } from './service/firebase/auth-firebase.service';
 import { RegistroComponentComponent } from './registro-component/registro-component.component';
 import { PerfilComponentComponent } from './perfil-component/perfil-component.component';
 import { LogOutComponentComponent } from './log-out-component/log-out-component.component';
@@ -69,6 +69,7 @@ const appRoutes: Routes = [
     //Error 404
     path: '**',
     component: ErrorPersonalizadoComponentComponent,
+
   },
 ];
 
@@ -90,6 +91,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
