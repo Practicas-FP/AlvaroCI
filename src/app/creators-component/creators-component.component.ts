@@ -8,10 +8,9 @@ import { ApiService } from '../service/api/api.service';
 })
 export class CreatorsComponentComponent implements OnInit {
 
-  title = 'marvelApp';
+  title = 'Marvel-Creators';
 
-  public comics: Array<any> = [];
-  public TitleComic: any = 'Avengers';
+  public creators: Array<any> = [];
   public offset: any = '0';
   public limit: any = '100';
 
@@ -20,7 +19,7 @@ export class CreatorsComponentComponent implements OnInit {
   ngOnInit(): void {
     this.comic.consultaCreatorsMarvel(this.offset, this.limit).subscribe((res) => {
       console.log('Respuesta', res);
-      this.comics = res.data.results;
+      this.creators = res.data.results;
     });
   }
 

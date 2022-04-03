@@ -7,17 +7,16 @@ import { ApiService } from '../service/api/api.service';
 })
 export class ComicsComponentComponent implements OnInit {
 
-  title = 'marvelApp';
+  title = 'Marvel-Comics';
 
   public comics: Array<any> = [];
-  public TitleComic: any = 'Avengers';
   public offset: any = '0';
   public limit: any = '100';
 
   constructor(private comic: ApiService) {}
 
   ngOnInit(): void {
-    this.comic.consultaComicsMarvel(this.TitleComic, this.offset, this.limit).subscribe((res) => {
+    this.comic.consultaComicsMarvel(this.offset, this.limit).subscribe((res) => {
       console.log('Respuesta', res);
       this.comics = res.data.results;
     });

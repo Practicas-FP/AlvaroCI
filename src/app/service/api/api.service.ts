@@ -9,11 +9,11 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  public consultaComicsMarvel(title: any, offset: any, limit: any) {
+  public consultaComicsMarvel(offset: any, limit: any) {
 
     let url =
     'http://gateway.marvel.com/v1/public/comics?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
-    + '&title=' + title + '&offset=' + offset + '&limit=' + limit;
+    + '&offset=' + offset + '&limit=' + limit;
 
     /*fetch('http://gateway.marvel.com/v1/public/comics?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
     + '&title=' + 'Avengers' + '&offset=' + '0' + '&limit=' + '100')
@@ -28,11 +28,11 @@ export class ApiService {
     );
   }
 
-  public consultaPeliculasMarvel(title: any, offset: any, limit: any) {
+  public consultaSeriesMarvel(offset: any, limit: any) {
 
     let url =
     'http://gateway.marvel.com/v1/public/series?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
-    + '&title=' + title + '&offset=' + offset + '&limit=' + limit;
+    + '&offset=' + offset + '&limit=' + limit;
 
     /*fetch('http://gateway.marvel.com/v1/public/comics?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
     + '&title=' + 'Avengers' + '&offset=' + '0' + '&limit=' + '100')
@@ -68,10 +68,12 @@ export class ApiService {
 
   public consultaStoriesMarvel(offset: any, limit: any) {
 
-    let url =
+    let url2 =
     'http://gateway.marvel.com/v1/public/stories?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
     + '&offset=' + offset + '&limit=' + limit;
 
+    let url =
+    'http://gateway.marvel.com/v1/public/stories?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c&limit=100&offset=0';
     /*fetch('http://gateway.marvel.com/v1/public/stories?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
     + '&title=' + 'Avengers' + '&offset=' + '0' + '&limit=' + '100')
     .then(response => response.json())
