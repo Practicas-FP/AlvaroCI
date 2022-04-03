@@ -20,7 +20,12 @@
           style="height: 300px" />
         <div class="card-body">
           <h5 class="card-title">{{ comic.name }}</h5>
-          <p class="card-text">{{ comic.description }}</p>
+          <div *ngIf="comic.description">
+            <p #descripcion class="card-text">{{ comic.description }}</p>
+          </div>
+          <div *ngIf="!comic.description">
+            <p #NoDescripcion class="card-text">Description not avalible due 'The Decimation'. Consult with Thanos for more information.</p>
+          </div>
         </div>
       </div>
     </div>

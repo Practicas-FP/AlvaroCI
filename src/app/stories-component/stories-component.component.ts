@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../service/api/api.service';
+
 @Component({
-  selector: 'app-comics-component',
-  templateUrl: './comics-component.component.html',
-  styleUrls: ['./comics-component.component.css']
+  selector: 'app-stories-component',
+  templateUrl: './stories-component.component.html',
+  styleUrls: ['./stories-component.component.css']
 })
-export class ComicsComponentComponent implements OnInit {
+export class StoriesComponentComponent implements OnInit {
 
   title = 'marvelApp';
 
@@ -17,7 +18,7 @@ export class ComicsComponentComponent implements OnInit {
   constructor(private comic: ApiService) {}
 
   ngOnInit(): void {
-    this.comic.consultaComicsMarvel(this.TitleComic, this.offset, this.limit).subscribe((res) => {
+    this.comic.consultaStoriesMarvel(this.offset, this.limit).subscribe((res) => {
       console.log('Respuesta', res);
       this.comics = res.data.results;
     });

@@ -15,9 +15,14 @@ import { PerfilComponentComponent } from './perfil-component/perfil-component.co
 import { LogOutComponentComponent } from './log-out-component/log-out-component.component';
 import { EditarComponentComponent } from './editar-component/editar-component.component';
 import { MenuComponentComponent } from './menu-component/menu-component.component';
-import { PeliculasComponentComponent } from './peliculas-component/peliculas-component.component';
 import { ComicsComponentComponent } from './comics-component/comics-component.component';
-import { GamesComponentComponent } from './games-component/games-component.component';
+import { charactersComponentComponent } from './characters-component/characters-component.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CreatorsComponentComponent } from './creators-component/creators-component.component';
+import { EventsComponentComponent } from './events-component/events-component.component';
+import { SeriesComponentComponent } from './series-component/series-component.component';
+import { StoriesComponentComponent } from './stories-component/stories-component.component';
 
 const appRoutes: Routes = [
   {
@@ -51,9 +56,9 @@ const appRoutes: Routes = [
     component: RegistroComponentComponent,
   },
   {
-    //Peliculas
-    path: 'peliculas',
-    component: PeliculasComponentComponent,
+    //Series
+    path: 'series',
+    component: SeriesComponentComponent,
   },
   {
     //Comics
@@ -61,15 +66,29 @@ const appRoutes: Routes = [
     component: ComicsComponentComponent,
   },
   {
-    //Games
-    path: 'games',
-    component: GamesComponentComponent,
+    //Characters
+    path: 'personajes',
+    component: charactersComponentComponent,
+  },
+  {
+    //Events
+    path: 'events',
+    component: EventsComponentComponent,
+  },
+  {
+    //Historias
+    path: 'stories',
+    component: StoriesComponentComponent,
+  },
+  {
+    //Creadores
+    path: 'creators',
+    component: CreatorsComponentComponent,
   },
   {
     //Error 404
     path: '**',
     component: ErrorPersonalizadoComponentComponent,
-
   },
 ];
 
@@ -84,9 +103,12 @@ const appRoutes: Routes = [
     LogOutComponentComponent,
     EditarComponentComponent,
     MenuComponentComponent,
-    PeliculasComponentComponent,
     ComicsComponentComponent,
-    GamesComponentComponent,
+    charactersComponentComponent,
+    CreatorsComponentComponent,
+    EventsComponentComponent,
+    SeriesComponentComponent,
+    StoriesComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +117,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [AuthFirebaseService],
   bootstrap: [AppComponent],
