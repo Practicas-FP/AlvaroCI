@@ -9,6 +9,8 @@ export class ComicsComponentComponent implements OnInit {
 
   title = 'Marvel-Comics';
 
+  NoImage: string = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available';
+
   public comics: Array<any> = [];
   public offset: any = '0';
   public limit: any = '100';

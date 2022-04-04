@@ -1,0 +1,113 @@
+<div *ngFor="let comic of comics" class="container">
+  <div *ngIf="comic.description" class="card">
+    <div class="container-fliud">
+      <div class="wrapper row">
+        <div class="preview col-md-6">
+          <div class="preview-pic tab-content">
+            <div class="tab-pane active" id="pic-1">
+              <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" />
+            </div>
+          </div>
+        </div>
+        <div class="details col-md-6">
+          <h3 class="product-title">{{ comic.title }}</h3>
+          <div class="rating">
+            <div class="stars">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+            <span class="review-no">41 reviews</span>
+          </div>
+          <p class="product-description">{{ comic.description }}</p>
+          <h4 *ngIf="comic.prices[0].price != 0" class="price">current price: <span> {{ comic.prices[0].price }}€</span>
+          </h4>
+          <h4 *ngIf="comic.prices[0].price == 0" class="price">current price: <span> OUT OF STOCK</span></h4>
+          <p class="vote"><strong>Sale date:</strong> {{ comic.dates[0].date }} </p>
+          <p class="vote"><strong>ISBN: </strong>{{ comic.isbn }}</p>
+          <p class="vote"><strong>Pages: </strong>{{ comic.pageCount }}</p>
+          <p class="vote"><strong>Format: </strong>{{ comic.format }}</p>
+          <div class="action">
+            <a href="https://www.marvel.com/marvel-comicstore" target="_blank" rel="noopener noreferrer">
+              <button class="add-to-cart btn btn-default" type="button">Buy</button>
+            </a>
+            <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px;"><i
+                class="bi bi-heart"></i></button>
+            <button class="like btn btn-default" type="button"><i class="bi bi-book"></i></button>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+    <div>
+      <br>
+      <p class="product-title">MORE DETAILS:</p>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="vote"><strong>Recommended series:</strong></p>
+            <a *ngFor="let comicSerie of comics" [routerLink]="['/detalles', comicSerie.series.name]" [queryParams]="{accion: 1}">
+              <p class="vote">
+                {{ comicSerie.series.name }}
+              </p>
+            </a>
+          </div>
+          <div class="col">
+            <p class="vote"><strong>Creators:</strong></p>
+            <div class="row" *ngFor="let comicCreators of comics; let i = index">
+              <a [routerLink]="['/detalles', comicCreators.creators.items[i].name]" [queryParams]="{accion: 2}">
+                <p class="vote">
+                  {{ comicCreators.creators.items[i].name }}
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--------------SIN DESCRIPCION-------------------------------------------------->
+  <div *ngIf="!comic.description" class="card">
+    <div class="container-fliud">
+      <div class="wrapper row">
+        <div class="preview col-md-6">
+          <div class="preview-pic tab-content">
+            <div class="tab-pane active" id="pic-1">
+              <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" width="150px" height="490px" />
+            </div>
+          </div>
+        </div>
+        <div class="details col-md-6">
+          <h3 class="product-title">{{ comic.title }}</h3>
+          <div class="rating">
+            <div class="stars">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+            <span class="review-no">41 reviews</span>
+          </div>
+          <p class="product-description">{{ comic.description }}</p>
+          <h4 *ngIf="comic.prices[0].price != 0" class="price">current price: <span> {{ comic.prices[0].price }}€</span>
+          </h4>
+          <h4 *ngIf="comic.prices[0].price == 0" class="price">current price: <span> OUT OF STOCK</span></h4>
+          <p class="vote"><strong>Sale date:</strong> {{ comic.dates[0].date }} </p>
+          <br>
+          <div class="action">
+            <button class="add-to-cart btn btn-default" type="button">Buy</button>
+            <button class="like btn btn-default" type="button"><i class="bi bi-heart"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>

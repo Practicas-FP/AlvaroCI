@@ -23,6 +23,9 @@ import { CreatorsComponentComponent } from './creators-component/creators-compon
 import { EventsComponentComponent } from './events-component/events-component.component';
 import { SeriesComponentComponent } from './series-component/series-component.component';
 import { StoriesComponentComponent } from './stories-component/stories-component.component';
+import { FavoritosComponentComponent } from './favoritos-component/favoritos-component.component';
+import { VistosComponentComponent } from './vistos-component/vistos-component.component';
+import { DetallesComponentComponent } from './detalles-component/detalles-component.component';
 
 const appRoutes: Routes = [
   {
@@ -86,6 +89,21 @@ const appRoutes: Routes = [
     component: CreatorsComponentComponent,
   },
   {
+    //Favoritos
+    path: 'favoritos',
+    component: FavoritosComponentComponent,
+  },
+  {
+    //Vistos
+    path: 'read',
+    component: VistosComponentComponent,
+  },
+  {
+    //Detalles
+    path: 'detalles/:id',
+    component: DetallesComponentComponent,
+  },
+  {
     //Error 404
     path: '**',
     component: ErrorPersonalizadoComponentComponent,
@@ -109,6 +127,9 @@ const appRoutes: Routes = [
     EventsComponentComponent,
     SeriesComponentComponent,
     StoriesComponentComponent,
+    FavoritosComponentComponent,
+    VistosComponentComponent,
+    DetallesComponentComponent,
   ],
   imports: [
     BrowserModule,
