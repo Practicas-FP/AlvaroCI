@@ -1,4 +1,4 @@
-<div *ngFor="let comic of comics" class="container">
+<div *ngFor="let comic of comics; let i = index" class="container">
   <div *ngIf="comic.description" class="card">
     <div class="container-fliud">
       <div class="wrapper row">
@@ -22,48 +22,66 @@
             <span class="review-no">41 reviews</span>
           </div>
           <p class="product-description">{{ comic.description }}</p>
-          <h4 *ngIf="comic.prices[0].price != 0" class="price">current price: <span> {{ comic.prices[0].price }}€</span>
+          <h4 *ngIf="comic.prices[0].price != 0" class="price">
+            current price: <span> {{ comic.prices[0].price }}€</span>
           </h4>
-          <h4 *ngIf="comic.prices[0].price == 0" class="price">current price: <span> OUT OF STOCK</span></h4>
-          <p class="vote"><strong>Sale date:</strong> {{ comic.dates[0].date }} </p>
+          <h4 *ngIf="comic.prices[0].price == 0" class="price">
+            current price: <span> OUT OF STOCK</span>
+          </h4>
+          <p class="vote">
+            <strong>Sale date:</strong> {{ comic.dates[0].date }}
+          </p>
           <p class="vote"><strong>ISBN: </strong>{{ comic.isbn }}</p>
           <p class="vote"><strong>Pages: </strong>{{ comic.pageCount }}</p>
           <p class="vote"><strong>Format: </strong>{{ comic.format }}</p>
           <div class="action">
             <a href="https://www.marvel.com/marvel-comicstore" target="_blank" rel="noopener noreferrer">
-              <button class="add-to-cart btn btn-default" type="button">Buy</button>
+              <button class="add-to-cart btn btn-default" type="button">
+                Buy
+              </button>
             </a>
-            <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px;"><i
-                class="bi bi-heart"></i></button>
-            <button class="like btn btn-default" type="button"><i class="bi bi-book"></i></button>
+            <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+              <i class="bi bi-heart"></i>
+            </button>
+            <button class="like btn btn-default" type="button">
+              <i class="bi bi-book"></i>
+            </button>
           </div>
-          <br>
+          <br />
         </div>
       </div>
     </div>
     <div>
-      <br>
+      <br />
       <p class="product-title">MORE DETAILS:</p>
       <div class="container">
         <div class="row">
           <div class="col">
             <p class="vote"><strong>Recommended series:</strong></p>
-            <a *ngFor="let comicSerie of comics" [routerLink]="['/detalles', comicSerie.series.name]" [queryParams]="{accion: 1}">
-              <p class="vote">
-                {{ comicSerie.series.name }}
-              </p>
-            </a>
-          </div>
-          <div class="col">
-            <p class="vote"><strong>Creators:</strong></p>
-            <div class="row" *ngFor="let comicCreators of comics; let i = index">
-              <a [routerLink]="['/detalles', comicCreators.creators.items[i].name]" [queryParams]="{accion: 2}">
+            <div *ngFor="let comicSerie of comics">
+              <a [routerLink]="['/detalles', comicSerie.series.name]" target="_blank" [queryParams]="{ accion: 'serie'}">
                 <p class="vote">
-                  {{ comicCreators.creators.items[i].name }}
+                  {{ comicSerie.series.name }}
                 </p>
               </a>
             </div>
           </div>
+          <div class="col">
+            <p class="vote"><strong>Creators ({{ comic.creators.available }}):</strong></p>
+            <div *ngFor="let comicCreators of comic.creators.items; let i = index">
+              <div class="row">
+                <p class="vote">
+                  <a [routerLink]="['/detalles',comicCreators.name]" [queryParams]="{ accion: 'creator'}">
+                    {{ comicCreators.name }}
+                  </a>
+                  as {{ comicCreators.role }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <pre>
+            {{ comic.series | json }}
+          </pre>
         </div>
       </div>
     </div>
@@ -91,15 +109,64 @@
             </div>
             <span class="review-no">41 reviews</span>
           </div>
-          <p class="product-description">{{ comic.description }}</p>
-          <h4 *ngIf="comic.prices[0].price != 0" class="price">current price: <span> {{ comic.prices[0].price }}€</span>
+          <p class="product-description">Description not avalible due 'The Decimation'. Consult with Thanos
+            for more information.</p>
+          <h4 *ngIf="comic.prices[0].price != 0" class="price">
+            current price: <span> {{ comic.prices[0].price }}€</span>
           </h4>
-          <h4 *ngIf="comic.prices[0].price == 0" class="price">current price: <span> OUT OF STOCK</span></h4>
-          <p class="vote"><strong>Sale date:</strong> {{ comic.dates[0].date }} </p>
-          <br>
+          <h4 *ngIf="comic.prices[0].price == 0" class="price">
+            current price: <span> OUT OF STOCK</span>
+          </h4>
+          <p class="vote">
+            <strong>Sale date:</strong> {{ comic.dates[0].date }}
+          </p>
+          <p class="vote"><strong>ISBN: </strong>{{ comic.isbn }}</p>
+          <p class="vote"><strong>Pages: </strong>{{ comic.pageCount }}</p>
+          <p class="vote"><strong>Format: </strong>{{ comic.format }}</p>
           <div class="action">
-            <button class="add-to-cart btn btn-default" type="button">Buy</button>
-            <button class="like btn btn-default" type="button"><i class="bi bi-heart"></i></button>
+            <a href="https://www.marvel.com/marvel-comicstore" target="_blank" rel="noopener noreferrer">
+              <button class="add-to-cart btn btn-default" type="button">
+                Buy
+              </button>
+            </a>
+            <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+              <i class="bi bi-heart"></i>
+            </button>
+            <button class="like btn btn-default" type="button">
+              <i class="bi bi-book"></i>
+            </button>
+          </div>
+          <br />
+        </div>
+      </div>
+    </div>
+    <div>
+      <br />
+      <p class="product-title">MORE DETAILS:</p>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="vote"><strong>Recommended series:</strong></p>
+            <div *ngFor="let comicSerie of comics">
+              <a [routerLink]="['/detalles', comicSerie.series.name]" [queryParams]="{ accion: 1}">
+                <p class="vote">
+                  {{ comicSerie.series.name }}
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="col">
+            <p class="vote"><strong>Creators ({{ comic.creators.available }}):</strong></p>
+            <div *ngFor="let comicCreators of comic.creators.items; let i = index">
+              <div class="row">
+                <p class="vote">
+                  <a [routerLink]="['/detalles',comicCreators.name]" [queryParams]="{ accion: 2}">
+                    {{ comicCreators.name }}
+                  </a>
+                  as {{ comicCreators.role }}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -108,6 +175,6 @@
 </div>
 
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>

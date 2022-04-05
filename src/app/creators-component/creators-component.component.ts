@@ -17,9 +17,11 @@ export class CreatorsComponentComponent implements OnInit {
   constructor(private comic: ApiService) {}
 
   ngOnInit(): void {
+
     this.comic.consultaCreatorsMarvel(this.offset, this.limit).subscribe((res) => {
       console.log('Respuesta', res);
       this.creators = res.data.results;
+      console.log(this.creators);
     });
   }
 

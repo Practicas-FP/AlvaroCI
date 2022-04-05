@@ -20,6 +20,7 @@ export class EventsComponentComponent implements OnInit {
     this.event.consultaEventsMarvel(this.offset, this.limit).subscribe((res) => {
       console.log('Respuesta', res);
       this.events = res.data.results;
+      console.log(this.events);
     });
   }
 

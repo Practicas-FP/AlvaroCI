@@ -20,6 +20,7 @@ export class StoriesComponentComponent implements OnInit {
     this.storie.consultaStoriesMarvel(this.offset, this.limit).subscribe((res) => {
       console.log('Respuesta', res);
       this.stories = res.data.results;
+      console.log(this.stories)
     });
   }
 

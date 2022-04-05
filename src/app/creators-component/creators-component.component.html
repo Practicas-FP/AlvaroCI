@@ -2,7 +2,8 @@
   <h1 class="mt-3 text-center animate__animated animate__bounce slower" style="
       color: maroon;
       font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-        'Lucida Sans', Arial, sans-serif;">
+        'Lucida Sans', Arial, sans-serif;
+    ">
     <strong>Marvel Creators Universe </strong>
   </h1>
   <h2 class="mt-3 text-center animate__animated animate__bounce slower" style="
@@ -15,16 +16,12 @@
   <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
     <div class="col" *ngFor="let creator of creators">
       <div class="card animate__bounceIn">
-        <img src="{{ creator.thumbnail.path }}.{{ creator.thumbnail.extension }}" class="card-img-top img-fluid"
-          style="height: 300px" />
-        <div class="card-body">
-          <h5 class="card-title">{{ creator.name }}</h5>
-          <div *ngIf="creator.description">
-            <p #descripcion class="card-text">{{ creator.description }}</p>
-          </div>
-          <div *ngIf="!creator.description">
-            <p #NoDescripcion class="card-text">Description not avalible due 'The Decimation'. Consult with Thanos for more information.</p>
-          </div>
+        <a [routerLink]="['/detalles', creator.id]" [queryParams]="{ accion: 'creator' }">
+          <img src="{{ creator.thumbnail.path }}.{{ creator.thumbnail.extension }}" class="card-img-top img-fluid"
+            style="height: 300px" />
+        </a>
+        <div class="card-body" style="text-align: center">
+          <h5 class="card-title">{{ creator.fullName }}</h5>
         </div>
       </div>
     </div>

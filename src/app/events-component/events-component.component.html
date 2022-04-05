@@ -16,16 +16,12 @@
   <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
     <div class="col" *ngFor="let event of events">
       <div class="card animate__bounceIn">
-        <img src="{{ event.thumbnail.path }}.{{ event.thumbnail.extension }}" class="card-img-top img-fluid"
-          style="height: 300px" />
-        <div class="card-body">
-          <h5 class="card-title">{{ event.name }}</h5>
-          <div *ngIf="event.description">
-            <p #descripcion class="card-text">{{ event.description }}</p>
-          </div>
-          <div *ngIf="!event.description">
-            <p #NoDescripcion class="card-text">Description not avalible due 'The Decimation'. Consult with Thanos for more information.</p>
-          </div>
+        <a [routerLink]="['/detalles', event.id]" [queryParams]="{accion: 'events'}">
+          <img src="{{ event.thumbnail.path }}.{{ event.thumbnail.extension }}" class="card-img-top img-fluid"
+            style="height: 300px" />
+        </a>
+        <div class="card-body" style="text-align: center;">
+          <h5 class="card-title">{{ event.title }}</h5>
         </div>
       </div>
     </div>

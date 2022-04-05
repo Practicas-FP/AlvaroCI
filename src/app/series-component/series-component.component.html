@@ -16,16 +16,12 @@
   <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
     <div class="col" *ngFor="let serie of series">
       <div class="card animate__bounceIn">
-        <img src="{{ serie.thumbnail.path }}.{{ serie.thumbnail.extension }}" class="card-img-top img-fluid"
-          style="height: 300px" />
+        <a [routerLink]="['/detalles', serie.id]" [queryParams]="{ accion: 'events' }">
+          <img src="{{ serie.thumbnail.path }}.{{ serie.thumbnail.extension }}" class="card-img-top img-fluid"
+            style="height: 300px" />
+        </a>
         <div class="card-body">
           <h5 class="card-title">{{ serie.name }}</h5>
-          <div *ngIf="serie.description">
-            <p #descripcion class="card-text">{{ serie.description }}</p>
-          </div>
-          <div *ngIf="!serie.description">
-            <p #NoDescripcion class="card-text">Description not avalible due 'The Decimation'. Consult with Thanos for more information.</p>
-          </div>
         </div>
       </div>
     </div>
