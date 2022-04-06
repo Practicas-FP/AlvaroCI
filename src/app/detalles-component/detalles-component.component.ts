@@ -15,9 +15,10 @@ export class DetallesComponentComponent implements OnInit {
   idCharacter: any = this.route.snapshot.params['id'];
   idEvent: any = this.route.snapshot.params['id'];
   idStories: any = this.route.snapshot.params['id'];
+  accion: any = this.route.snapshot.queryParams['accion'];
 
   public comics: Array<any> = [];
-  accion: any = this.route.snapshot.queryParams['accion'];
+
   constructor(private comic: DetallesApiService, private routerVolver: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {

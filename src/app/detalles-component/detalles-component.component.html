@@ -1,170 +1,335 @@
-<div *ngFor="let comic of comics; let i = index" class="container">
-  <div *ngIf="comic.description" class="card">
-    <div class="container-fliud">
-      <div class="wrapper row">
-        <div class="preview col-md-6">
-          <div class="preview-pic tab-content">
-            <div class="tab-pane active" id="pic-1">
-              <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" />
+<container-element [ngSwitch]="accion">
+  <div *ngSwitchCase="'comic'">
+    <div *ngFor="let comic of comics; let i = index" class="container">
+      <div *ngIf="comic.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div class="tab-pane active" id="pic-1">
+                  <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" />
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ comic.title }}</h3>
+              <div class="rating">
+                <div class="stars">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span>
+              </div>
+              <p class="product-description">{{ comic.description }}</p>
+              <h4 *ngIf="comic.prices[0].price != 0" class="price">
+                current price: <span> {{ comic.prices[0].price }}€</span>
+              </h4>
+              <h4 *ngIf="comic.prices[0].price == 0" class="price">
+                current price: <span> OUT OF STOCK</span>
+              </h4>
+              <p class="vote">
+                <strong>Sale date:</strong> {{ comic.dates[0].date }}
+              </p>
+              <p class="vote"><strong>ISBN: </strong>{{ comic.isbn }}</p>
+              <p class="vote"><strong>Pages: </strong>{{ comic.pageCount }}</p>
+              <p class="vote"><strong>Format: </strong>{{ comic.format }}</p>
+              <div class="action">
+                <a href="https://www.marvel.com/marvel-comicstore" target="_blank" rel="noopener noreferrer">
+                  <button class="add-to-cart btn btn-default" type="button">
+                    Buy
+                  </button>
+                </a>
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <button class="like btn btn-default" type="button">
+                  <i class="bi bi-book"></i>
+                </button>
+              </div>
+              <br />
             </div>
           </div>
         </div>
-        <div class="details col-md-6">
-          <h3 class="product-title">{{ comic.title }}</h3>
-          <div class="rating">
-            <div class="stars">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-            <span class="review-no">41 reviews</span>
-          </div>
-          <p class="product-description">{{ comic.description }}</p>
-          <h4 *ngIf="comic.prices[0].price != 0" class="price">
-            current price: <span> {{ comic.prices[0].price }}€</span>
-          </h4>
-          <h4 *ngIf="comic.prices[0].price == 0" class="price">
-            current price: <span> OUT OF STOCK</span>
-          </h4>
-          <p class="vote">
-            <strong>Sale date:</strong> {{ comic.dates[0].date }}
-          </p>
-          <p class="vote"><strong>ISBN: </strong>{{ comic.isbn }}</p>
-          <p class="vote"><strong>Pages: </strong>{{ comic.pageCount }}</p>
-          <p class="vote"><strong>Format: </strong>{{ comic.format }}</p>
-          <div class="action">
-            <a href="https://www.marvel.com/marvel-comicstore" target="_blank" rel="noopener noreferrer">
-              <button class="add-to-cart btn btn-default" type="button">
-                Buy
-              </button>
-            </a>
-            <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
-              <i class="bi bi-heart"></i>
-            </button>
-            <button class="like btn btn-default" type="button">
-              <i class="bi bi-book"></i>
-            </button>
-          </div>
+        <div>
           <br />
+          <p class="product-title">MORE DETAILS:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Recommended series:</strong></p>
+                <div *ngFor="let comicSerie of comics">
+                  <a [routerLink]="['/detalles', comicSerie.series.name]" target="_blank"
+                    [queryParams]="{ accion: 'serie'}">
+                    <p class="vote">
+                      {{ comicSerie.series.name }}
+                    </p>
+                  </a>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Creators ({{ comic.creators.available }}):</strong></p>
+                <div *ngFor="let comicCreators of comic.creators.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',comicCreators.name]" [queryParams]="{ accion: 'creator'}">
+                        {{ comicCreators.name }}
+                      </a>
+                      as {{ comicCreators.role }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <pre>
+                {{ comic.series | json }}
+              </pre>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div>
-      <br />
-      <p class="product-title">MORE DETAILS:</p>
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <p class="vote"><strong>Recommended series:</strong></p>
-            <div *ngFor="let comicSerie of comics">
-              <a [routerLink]="['/detalles', comicSerie.series.name]" target="_blank" [queryParams]="{ accion: 'serie'}">
-                <p class="vote">
-                  {{ comicSerie.series.name }}
-                </p>
-              </a>
+      <!--------------SIN DESCRIPCION-------------------------------------------------->
+      <div *ngIf="!comic.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div class="tab-pane active" id="pic-1">
+                  <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" width="150px" height="490px" />
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ comic.title }}</h3>
+              <div class="rating">
+                <div class="stars">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span>
+              </div>
+              <p class="product-description">Description not avalible due 'The Decimation'. Consult with Thanos
+                for more information.</p>
+              <h4 *ngIf="comic.prices[0].price != 0" class="price">
+                current price: <span> {{ comic.prices[0].price }}€</span>
+              </h4>
+              <h4 *ngIf="comic.prices[0].price == 0" class="price">
+                current price: <span> OUT OF STOCK</span>
+              </h4>
+              <p class="vote">
+                <strong>Sale date:</strong> {{ comic.dates[0].date }}
+              </p>
+              <p class="vote"><strong>ISBN: </strong>{{ comic.isbn }}</p>
+              <p class="vote"><strong>Pages: </strong>{{ comic.pageCount }}</p>
+              <p class="vote"><strong>Format: </strong>{{ comic.format }}</p>
+              <div class="action">
+                <a href="https://www.marvel.com/marvel-comicstore" target="_blank" rel="noopener noreferrer">
+                  <button class="add-to-cart btn btn-default" type="button">
+                    Buy
+                  </button>
+                </a>
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <button class="like btn btn-default" type="button">
+                  <i class="bi bi-book"></i>
+                </button>
+              </div>
+              <br />
             </div>
           </div>
-          <div class="col">
-            <p class="vote"><strong>Creators ({{ comic.creators.available }}):</strong></p>
-            <div *ngFor="let comicCreators of comic.creators.items; let i = index">
-              <div class="row">
-                <p class="vote">
-                  <a [routerLink]="['/detalles',comicCreators.name]" [queryParams]="{ accion: 'creator'}">
-                    {{ comicCreators.name }}
+        </div>
+        <div>
+          <br />
+          <p class="product-title">MORE DETAILS:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Recommended series:</strong></p>
+                <div *ngFor="let comicSerie of comics">
+                  <a [routerLink]="['/detalles', comicSerie.series.name]" [queryParams]="{ accion: 1}">
+                    <p class="vote">
+                      {{ comicSerie.series.name }}
+                    </p>
                   </a>
-                  as {{ comicCreators.role }}
-                </p>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Creators ({{ comic.creators.available }}):</strong></p>
+                <div *ngFor="let comicCreators of comic.creators.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',comicCreators.name]" [queryParams]="{ accion: 2}">
+                        {{ comicCreators.name }}
+                      </a>
+                      as {{ comicCreators.role }}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <pre>
-            {{ comic.series | json }}
-          </pre>
         </div>
       </div>
     </div>
   </div>
-  <!--------------SIN DESCRIPCION-------------------------------------------------->
-  <div *ngIf="!comic.description" class="card">
-    <div class="container-fliud">
-      <div class="wrapper row">
-        <div class="preview col-md-6">
-          <div class="preview-pic tab-content">
-            <div class="tab-pane active" id="pic-1">
-              <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" width="150px" height="490px" />
+  <div *ngSwitchCase="'character'">
+    <div *ngFor="let character of comics; let i = index" class="container">
+      <div *ngIf="character.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div class="tab-pane active" id="pic-1">
+                  <img src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}" />
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ character.name }}</h3>
+              <div class="rating">
+                <div class="stars">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                </div>
+              </div>
+              <p class="product-description">{{ character.description }}</p>
+              <div class="action">
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <br />
             </div>
           </div>
         </div>
-        <div class="details col-md-6">
-          <h3 class="product-title">{{ comic.title }}</h3>
-          <div class="rating">
-            <div class="stars">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-            </div>
-            <span class="review-no">41 reviews</span>
-          </div>
-          <p class="product-description">Description not avalible due 'The Decimation'. Consult with Thanos
-            for more information.</p>
-          <h4 *ngIf="comic.prices[0].price != 0" class="price">
-            current price: <span> {{ comic.prices[0].price }}€</span>
-          </h4>
-          <h4 *ngIf="comic.prices[0].price == 0" class="price">
-            current price: <span> OUT OF STOCK</span>
-          </h4>
-          <p class="vote">
-            <strong>Sale date:</strong> {{ comic.dates[0].date }}
-          </p>
-          <p class="vote"><strong>ISBN: </strong>{{ comic.isbn }}</p>
-          <p class="vote"><strong>Pages: </strong>{{ comic.pageCount }}</p>
-          <p class="vote"><strong>Format: </strong>{{ comic.format }}</p>
-          <div class="action">
-            <a href="https://www.marvel.com/marvel-comicstore" target="_blank" rel="noopener noreferrer">
-              <button class="add-to-cart btn btn-default" type="button">
-                Buy
-              </button>
-            </a>
-            <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
-              <i class="bi bi-heart"></i>
-            </button>
-            <button class="like btn btn-default" type="button">
-              <i class="bi bi-book"></i>
-            </button>
-          </div>
+        <div>
           <br />
+          <p class="product-title">IT APPEARS IN:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Series ({{ character.series.available }}):</strong></p>
+                <div *ngFor="let characterSeries of character.series.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',characterSeries.name]" [queryParams]="{ accion: 'series'}">
+                        {{ characterSeries.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Comics ({{ character.comics.available }}):</strong></p>
+                <div *ngFor="let characterComics of character.comics.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',characterComics.name]" [queryParams]="{ accion: 'comics'}">
+                        {{ characterComics.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Stories ({{ character.stories.available }}):</strong></p>
+                <div *ngFor="let characterStories of character.stories.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',characterStories.name]" [queryParams]="{ accion: 'creator'}">
+                        {{ characterStories.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div>
-      <br />
-      <p class="product-title">MORE DETAILS:</p>
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <p class="vote"><strong>Recommended series:</strong></p>
-            <div *ngFor="let comicSerie of comics">
-              <a [routerLink]="['/detalles', comicSerie.series.name]" [queryParams]="{ accion: 1}">
-                <p class="vote">
-                  {{ comicSerie.series.name }}
-                </p>
-              </a>
+      <!--------------SIN DESCRIPCION-------------------------------------------------->
+      <div *ngIf="!character.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div class="tab-pane active" id="pic-1">
+                  <img src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}" width="150px"
+                    height="490px" />
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ character.name }}</h3>
+              <div class="rating">
+                <div class="stars">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span>
+              </div>
+              <p class="product-description">Description not avalible due 'The Decimation'. Consult with Thanos
+                for more information.</p>
+              <div class="action">
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <br />
             </div>
           </div>
-          <div class="col">
-            <p class="vote"><strong>Creators ({{ comic.creators.available }}):</strong></p>
-            <div *ngFor="let comicCreators of comic.creators.items; let i = index">
-              <div class="row">
-                <p class="vote">
-                  <a [routerLink]="['/detalles',comicCreators.name]" [queryParams]="{ accion: 2}">
-                    {{ comicCreators.name }}
-                  </a>
-                  as {{ comicCreators.role }}
-                </p>
+        </div>
+        <div>
+          <br />
+          <p class="product-title">IT APPEARS IN:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Series ({{ character.series.available }}):</strong></p>
+                <div *ngFor="let characterSeries of character.series.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',characterSeries.name]" [queryParams]="{ accion: 'series'}">
+                        {{ characterSeries.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Comics ({{ character.comics.available }}):</strong></p>
+                <div *ngFor="let characterComics of character.comics.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',characterComics.name]" [queryParams]="{ accion: 'comics'}">
+                        {{ characterComics.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Stories ({{ character.stories.available }}):</strong></p>
+                <div *ngFor="let characterStories of character.stories.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',characterStories.name]" [queryParams]="{ accion: 'creator'}">
+                        {{ characterStories.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -172,9 +337,792 @@
       </div>
     </div>
   </div>
-</div>
-
-
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <div *ngSwitchCase="'creator'">
+    <div *ngFor="let creator of comics; let i = index" class="container">
+      <div *ngIf="creator.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div class="tab-pane active" id="pic-1">
+                  <img src="{{ creator.thumbnail.path }}.{{ creator.thumbnail.extension }}" />
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ creator.fullName }}</h3>
+              <p class="product-description">{{ creator.description }}</p>
+              <div class="action">
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+        <div>
+          <br />
+          <p class="product-title">MORE DETAILS:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Series ({{ creator.series.available }}):</strong></p>
+                <div *ngFor="let creatorSeries of creator.series.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',creatorSeries.name]" [queryParams]="{ accion: 'serie'}">
+                        {{ creatorSeries.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Comics ({{ creator.comics.available }}):</strong></p>
+                <div *ngFor="let creatorComics of creator.comics.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',creatorComics.name]" [queryParams]="{ accion: 'comic'}">
+                        {{ creatorComics.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Stories ({{ creator.stories.available }}):</strong></p>
+                <div *ngFor="let creatorStories of creator.stories.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',creatorStories.name]" [queryParams]="{ accion: 'stories'}">
+                        {{ creatorStories.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Events ({{ creator.events.available }}):</strong></p>
+                <div *ngFor="let creatorEvents of creator.events.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',creatorEvents.name]" [queryParams]="{ accion: 'events'}">
+                        {{ creatorEvents.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--------------SIN DESCRIPCION-------------------------------------------------->
+      <div *ngIf="!creator.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div class="tab-pane active" id="pic-1">
+                  <img src="{{ creator.thumbnail.path }}.{{ creator.thumbnail.extension }}" width="150px"
+                    height="490px" />
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ creator.fullName }}</h3>
+              <p class="product-description">Description not avalible due 'The Decimation'. Consult with Thanos
+                for more information.</p>
+              <div class="action">
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+        <div>
+          <br />
+          <p class="product-title">MORE DETAILS:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Series ({{ creator.series.available }}):</strong></p>
+                <div *ngFor="let creatorSeries of creator.series.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',creatorSeries.name]" [queryParams]="{ accion: 'serie'}">
+                        {{ creatorSeries.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Comics ({{ creator.comics.available }}):</strong></p>
+                <div *ngFor="let creatorComics of creator.comics.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',creatorComics.name]" [queryParams]="{ accion: 'comic'}">
+                        {{ creatorComics.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Stories ({{ creator.stories.available }}):</strong></p>
+                <div *ngFor="let creatorStories of creator.stories.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',creatorStories.name]" [queryParams]="{ accion: 'stories'}">
+                        {{ creatorStories.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Events ({{ creator.events.available }}):</strong></p>
+                <div *ngFor="let creatorEvents of creator.events.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',creatorEvents.name]" [queryParams]="{ accion: 'events'}">
+                        {{ creatorEvents.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'serie'">
+    <div *ngFor="let serie of comics; let i = index" class="container">
+      <div *ngIf="serie.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div class="tab-pane active" id="pic-1">
+                  <img src="{{ serie.thumbnail.path }}.{{ serie.thumbnail.extension }}" />
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ serie.title }}</h3>
+              <div class="rating">
+                <div class="stars">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span>
+              </div>
+              <p class="product-description">{{ serie.description }}</p>
+              <p class="vote">
+                <strong>Start Year:</strong> {{ serie.startYear }}
+              </p>
+              <p class="vote">
+                <strong>End Year:</strong> {{ serie.endYear }}
+              </p>
+              <p class="vote"><strong>Type: </strong>{{ serie.type }}</p>
+              <p class="vote"><strong>Rating age: </strong>{{ serie.rating }}</p>
+              <div class="action">
+                <a href="https://www.marvel.com/marvel-comicstore" target="_blank" rel="noopener noreferrer">
+                  <button class="add-to-cart btn btn-default" type="button">
+                    Buy
+                  </button>
+                </a>
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <button class="like btn btn-default" type="button">
+                  <i class="bi bi-book"></i>
+                </button>
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+        <div>
+          <br />
+          <p class="product-title">MORE DETAILS:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Recommended comics:</strong></p>
+                <div *ngFor="let Serie of serie.comics.item">
+                  <a [routerLink]="['/detalles', Serie.name]" target="_blank" [queryParams]="{ accion: 'serie'}">
+                    <p class="vote">
+                      {{ Serie.name }}
+                    </p>
+                  </a>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Creators ({{ serie.creators.available }}):</strong></p>
+                <div *ngFor="let serieCreators of serie.creators.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',serieCreators.name]" [queryParams]="{ accion: 'creator'}">
+                        {{ serieCreators.name }}
+                      </a>
+                      as {{ serieCreators.role }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--------------SIN DESCRIPCION-------------------------------------------------->
+      <div *ngIf="!serie.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div class="tab-pane active" id="pic-1">
+                  <img src="{{ serie.thumbnail.path }}.{{ serie.thumbnail.extension }}" width="150px" height="490px" />
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ serie.title }}</h3>
+              <div class="rating">
+                <div class="stars">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span>
+              </div>
+              <p class="product-description">Description not avalible due 'The Decimation'. Consult with Thanos
+                for more information.</p>
+              <p class="vote">
+                <strong>Start Year:</strong> {{ serie.startYear }}
+              </p>
+              <p class="vote">
+                <strong>End Year:</strong> {{ serie.endYear }}
+              </p>
+              <p class="vote"><strong>Type: </strong>{{ serie.type }}</p>
+              <p class="vote"><strong>Rating age: </strong>{{ serie.rating }}</p>
+              <div class="action">
+                <a href="https://www.marvel.com/marvel-comicstore" target="_blank" rel="noopener noreferrer">
+                  <button class="add-to-cart btn btn-default" type="button">
+                    Buy
+                  </button>
+                </a>
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <button class="like btn btn-default" type="button">
+                  <i class="bi bi-book"></i>
+                </button>
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+        <div>
+          <br />
+          <p class="product-title">MORE DETAILS:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Recommended comics:</strong></p>
+                <div *ngFor="let Serie of serie.comics.items">
+                  <div class="row">
+                    <a [routerLink]="['/detalles', Serie.name]" target="_blank" [queryParams]="{ accion: 'serie'}">
+                      <p class="vote">
+                        {{ Serie.name }}
+                      </p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Creators ({{ serie.creators.available }}):</strong></p>
+                <div *ngFor="let serieCreators of serie.creators.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',serieCreators.name]" [queryParams]="{ accion: 'creator'}">
+                        {{ serieCreators.name }}
+                      </a>
+                      as {{ serieCreators.role }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'events'">
+    <div *ngFor="let events of comics; let i = index" class="container">
+      <div *ngIf="events.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div class="tab-pane active" id="pic-1">
+                  <img src="{{ events.thumbnail.path }}.{{ events.thumbnail.extension }}" />
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ events.title }}</h3>
+              <div class="rating">
+                <div class="stars">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span>
+              </div>
+              <p class="product-description">{{ events.description }}</p>
+              <p class="vote">
+                <strong>Start date:</strong> {{ events.start }}
+              </p>
+              <p class="vote">
+                <strong>End date:</strong> {{ events.end }}
+              </p>
+              <div class="action">
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <button class="like btn btn-default" type="button">
+                  <i class="bi bi-book"></i>
+                </button>
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+        <div>
+          <br />
+          <p class="product-title">MORE DETAILS:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Characters ({{ events.characters.available }}):</strong></p>
+                <div *ngFor="let eventsCharacters of events.characters.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',eventsCharacters.name]" [queryParams]="{ accion: 'character'}">
+                        {{ eventsCharacters.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Stories ({{ events.stories.available }}):</strong></p>
+                <div *ngFor="let eventsStories of events.stories.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',eventsStories.name]" [queryParams]="{ accion: 'storie'}">
+                        {{ eventsStories.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Comics ({{ events.comics.available }}):</strong></p>
+                <div *ngFor="let eventsComics of events.comics.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',eventsComics.name]" [queryParams]="{ accion: 'comic'}">
+                        {{ eventsComics.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Series ({{ events.series.available }}):</strong></p>
+                <div *ngFor="let eventsSeries of events.series.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',eventsSeries.name]" [queryParams]="{ accion: 'serie'}">
+                        {{ eventsSeries.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Creators ({{ events.creators.available }}):</strong></p>
+                <div *ngFor="let eventsCreators of events.creators.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',eventsCreators.name]" [queryParams]="{ accion: 'creator'}">
+                        {{ eventsCreators.name }}
+                      </a>
+                    </p>
+                    <p> as {{ eventsCreators.role }},</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--------------SIN DESCRIPCION-------------------------------------------------->
+      <div *ngIf="!events.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div class="tab-pane active" id="pic-1">
+                  <img src="{{ events.thumbnail.path }}.{{ events.thumbnail.extension }}" width="150px"
+                    height="490px" />
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ events.title }}</h3>
+              <div class="rating">
+                <div class="stars">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span>
+              </div>
+              <p class="product-description">Description not avalible due 'The Decimation'. Consult with Thanos
+                for more information.</p>
+              <p class="vote">
+                <strong>Start date:</strong> {{ events.start }}
+              </p>
+              <p class="vote">
+                <strong>End date:</strong> {{ events.end }}
+              </p>
+              <div class="action">
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <button class="like btn btn-default" type="button">
+                  <i class="bi bi-book"></i>
+                </button>
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+        <div>
+          <br />
+          <p class="product-title">MORE DETAILS:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Characters ({{ events.characters.available }}):</strong></p>
+                <div *ngFor="let eventsCharacters of events.characters.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',eventsCharacters.name]" [queryParams]="{ accion: 'character'}">
+                        {{ eventsCharacters.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Stories ({{ events.stories.available }}):</strong></p>
+                <div *ngFor="let eventsStories of events.stories.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',eventsStories.name]" [queryParams]="{ accion: 'storie'}">
+                        {{ eventsStories.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Comics ({{ events.comics.available }}):</strong></p>
+                <div *ngFor="let eventsComics of events.comics.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',eventsComics.name]" [queryParams]="{ accion: 'comic'}">
+                        {{ eventsComics.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Series ({{ events.series.available }}):</strong></p>
+                <div *ngFor="let eventsSeries of events.series.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',eventsSeries.name]" [queryParams]="{ accion: 'serie'}">
+                        {{ eventsSeries.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Creators ({{ events.creators.available }}):</strong></p>
+                <div *ngFor="let eventsCreators of events.creators.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',eventsCreators.name]" [queryParams]="{ accion: 'creator'}">
+                        {{ eventsCreators.name }}
+                      </a>
+                    </p>
+                    <p> as {{ eventsCreators.role }},</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'stories'">
+    <div *ngFor="let stories of comics; let i = index" class="container">
+      <div *ngIf="stories.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div *ngIf="stories.thumbnail != null" class="tab-pane active" id="pic-1">
+                  <img src="{{ stories.thumbnail.path }}.{{ stories.thumbnail.extension }}" />
+                </div>
+                <div *ngIf="stories.thumbnail == null">
+                  <img src="./../../../assets/images/Marvel_Logo.png" width="150px" height="500px"/>
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ stories.title }}</h3>
+              <div class="rating">
+                <div class="stars">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span>
+              </div>
+              <p class="product-description">{{ stories.description }}</p>
+              <p class="vote"><strong>Last modified:</strong> {{ stories.modified }}</p>
+              <p class="vote"><strong>Type: </strong>{{ stories.type }}</p>
+              <div class="action">
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <button class="like btn btn-default" type="button">
+                  <i class="bi bi-book"></i>
+                </button>
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+        <div>
+          <br />
+          <p class="product-title">MORE DETAILS:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Original Issue:</strong></p>
+                <div>
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',stories.originalIssue]" [queryParams]="{ accion: 'original'}">
+                        {{ stories.originalIssue }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Characters ({{ stories.characters.available }}):</strong></p>
+                <div *ngFor="let storiesCharacters of stories.characters.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',storiesCharacters.name]" [queryParams]="{ accion: 'character'}">
+                        {{ storiesCharacters.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Comics ({{ stories.comics.available }}):</strong></p>
+                <div *ngFor="let storiesComics of stories.comics.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',storiesComics.name]" [queryParams]="{ accion: 'comic'}">
+                        {{ storiesComics.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Series ({{ stories.series.available }}):</strong></p>
+                <div *ngFor="let storiesSeries of stories.series.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',storiesSeries.name]" [queryParams]="{ accion: 'serie'}">
+                        {{ storiesSeries.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Creators ({{ stories.creators.available }}):</strong></p>
+                <div *ngFor="let storiesCreators of stories.creators.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',storiesCreators.name]" [queryParams]="{ accion: 'creator'}">
+                        {{ storiesCreators.name }}
+                      </a>
+                    </p>
+                    <p> as {{ storiesCreators.role }},</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--------------SIN DESCRIPCION-------------------------------------------------->
+      <div *ngIf="!stories.description" class="card">
+        <div class="container-fliud">
+          <div class="wrapper row">
+            <div class="preview col-md-6">
+              <div class="preview-pic tab-content">
+                <div *ngIf="stories.thumbnail != null" class="tab-pane active" id="pic-1">
+                  <img src="{{ stories.thumbnail.path }}.{{ stories.thumbnail.extension }}" />
+                </div>
+                <div *ngIf="stories.thumbnail == null">
+                  <img src="./../../../assets/images/Avengers.webp" width="150px" height="500px" />
+                </div>
+              </div>
+            </div>
+            <div class="details col-md-6">
+              <h3 class="product-title">{{ stories.title }}</h3>
+              <div class="rating">
+                <div class="stars">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <span class="review-no">41 reviews</span>
+              </div>
+              <p class="product-description">Description not avalible due 'The Decimation'. Consult with Thanos
+                for more information.</p>
+              <p class="vote"><strong>Last modified:</strong> {{ stories.modified }}</p>
+              <p class="vote"><strong>Type: </strong>{{ stories.type }}</p>
+              <div class="action">
+                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <button class="like btn btn-default" type="button">
+                  <i class="bi bi-book"></i>
+                </button>
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+        <div>
+          <br />
+          <p class="product-title">MORE DETAILS:</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p class="vote"><strong>Original Issue:</strong></p>
+                <div>
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',stories.originalIssue]" [queryParams]="{ accion: 'original'}">
+                        {{ stories.originalIssue }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Characters ({{ stories.characters.available }}):</strong></p>
+                <div *ngFor="let storiesCharacters of stories.characters.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',storiesCharacters.name]" [queryParams]="{ accion: 'character'}">
+                        {{ storiesCharacters.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Comics ({{ stories.comics.available }}):</strong></p>
+                <div *ngFor="let storiesComics of stories.comics.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',storiesComics.name]" [queryParams]="{ accion: 'comic'}">
+                        {{ storiesComics.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Series ({{ stories.series.available }}):</strong></p>
+                <div *ngFor="let storiesSeries of stories.series.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',storiesSeries.name]" [queryParams]="{ accion: 'serie'}">
+                        {{ storiesSeries.name }}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <p class="vote"><strong>Creators ({{ stories.creators.available }}):</strong></p>
+                <div *ngFor="let storiesCreators of stories.creators.items; let i = index">
+                  <div class="row">
+                    <p class="vote">
+                      <a [routerLink]="['/detalles',storiesCreators.name]" [queryParams]="{ accion: 'creator'}">
+                        {{ storiesCreators.name }}
+                      </a>
+                    </p>
+                    <p> as {{ storiesCreators.role }},</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</container-element>
