@@ -1,0 +1,13 @@
+<div class="container-right" style="margin-top: 20px; margin-bottom: 10p;">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="input-group">
+        <input type="hidden" name="search_param" value="all" id="search_param">
+        <input type="text" class="form-control" name="Search" id="IDSearch" placeholder="Search term..." #Search autofocus (keyup)="onKeyup(Search.value)">
+        <span class="input-group-btn">
+          <button style="margin-left: 10px;" class="btn btn-light" (click)="btnSearch(Search.value)" type="button"><span class="bi bi-search"></span></button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
