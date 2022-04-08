@@ -10,6 +10,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AuthFirebaseService } from './service/firebase/auth-firebase.service';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { RegistroComponentComponent } from './registro-component/registro-component.component';
 import { PerfilComponentComponent } from './perfil-component/perfil-component.component';
 import { LogOutComponentComponent } from './log-out-component/log-out-component.component';
@@ -26,6 +27,8 @@ import { StoriesComponentComponent } from './stories-component/stories-component
 import { FavoritosComponentComponent } from './favoritos-component/favoritos-component.component';
 import { VistosComponentComponent } from './vistos-component/vistos-component.component';
 import { DetallesComponentComponent } from './detalles-component/detalles-component.component';
+import { SearchComponentComponent } from './search-component/search-component.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 
 const appRoutes: Routes = [
   {
@@ -104,6 +107,36 @@ const appRoutes: Routes = [
     component: DetallesComponentComponent,
   },
   {
+    //Búsqueda
+    path: 'series/:id',
+    component: SeriesComponentComponent,
+  },
+  {
+    //Búsqueda
+    path: 'comics/:id',
+    component: ComicsComponentComponent,
+  },
+  {
+    //Búsqueda
+    path: 'personajes/:id',
+    component: charactersComponentComponent,
+  },
+  {
+    //Búsqueda
+    path: 'events/:id',
+    component: EventsComponentComponent,
+  },
+  {
+    //Búsqueda
+    path: 'stories/:id',
+    component: StoriesComponentComponent,
+  },
+  {
+    //Búsqueda
+    path: 'creators/:id',
+    component: CreatorsComponentComponent,
+  },
+  {
     //Error 404
     path: '**',
     component: ErrorPersonalizadoComponentComponent,
@@ -130,6 +163,7 @@ const appRoutes: Routes = [
     FavoritosComponentComponent,
     VistosComponentComponent,
     DetallesComponentComponent,
+    SearchComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -140,6 +174,8 @@ const appRoutes: Routes = [
     AngularFireAuthModule,
     HttpClientModule,
     NgxPaginationModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [AuthFirebaseService],
   bootstrap: [AppComponent],

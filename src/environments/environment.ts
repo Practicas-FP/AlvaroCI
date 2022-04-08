@@ -11,6 +11,9 @@ import { getAnalytics } from 'firebase/analytics';
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const environment = {
   production: false,
+  baseURLcomics: 'http:gateway.marvel.com/v1/public/comics?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c',
+  baseURLcharacters: 'http:gateway.marvel.com/v1/public/characters?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c',
+  
   firebaseConfig: {
     apiKey: 'AIzaSyCHSvfEuzPQwNNvvQYyx07ZL-21lTjH8uc',
     authDomain: 'marvel-30077.firebaseapp.com',

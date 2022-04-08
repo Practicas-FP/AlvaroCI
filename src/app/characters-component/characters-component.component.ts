@@ -13,7 +13,8 @@ export class charactersComponentComponent implements OnInit {
   public characters: Array<any> = [];
   public offset: any = '0';
   public limit: any = '100';
-
+  public page: number = 0;
+  
   constructor(private comic: ApiService) {}
 
   ngOnInit(): void {

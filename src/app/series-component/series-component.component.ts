@@ -13,7 +13,7 @@ export class SeriesComponentComponent implements OnInit {
   public series: Array<any> = [];
   public offset: any = '0';
   public limit: any = '100';
-
+  public page: number = 0;
   constructor(private serie: ApiService) {}
 
   ngOnInit(): void {

@@ -14,7 +14,7 @@
     <strong>Marvel Universe </strong>
   </h2>
   <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
-    <div class="col" *ngFor="let character of characters">
+    <div class="col" *ngFor="let character of characters | paginate: {itemsPerPage: 12, currentPage: page}">
       <div class="card animate__bounceIn">
         <a [routerLink]="['/detalles', character.id]" [queryParams]="{accion: 'character'}">
           <img src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}" class="card-img-top img-fluid"
@@ -25,5 +25,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div style="text-align: center;">
+    <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
+    </pagination-controls>
   </div>
 </div>

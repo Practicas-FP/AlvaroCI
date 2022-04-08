@@ -13,7 +13,7 @@ export class EventsComponentComponent implements OnInit {
   public events: Array<any> = [];
   public offset: any = '0';
   public limit: any = '100';
-
+  public page: number = 0;
   constructor(private event: ApiService) {}
 
   ngOnInit(): void {

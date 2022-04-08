@@ -6,6 +6,7 @@ import firebase from '@firebase/app-compat';
   providedIn: 'root',
 })
 export class AuthFirebaseService {
+
   constructor(private auth: AngularFireAuth) {}
   async login(email: string, password: string) {
     try {
@@ -52,4 +53,5 @@ export class AuthFirebaseService {
       }
     })
   }
+
 }

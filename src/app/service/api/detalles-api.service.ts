@@ -95,10 +95,10 @@ export class DetallesApiService {
   }
 
   /*************BUSQUEDA MORE DETAILS********************/
-  public consultaByNameMarvel(name: any) {
+  public consultaByTitleMarvel(name: any) {
     let url =
-      'http://gateway.marvel.com/v1/public/series?title=' + name + '&ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
-      + '&offset=0&limit=1';
+      'http://gateway.marvel.com/v1/public/comics?titleStartsWith=' + name + '&ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
+      + '&offset=0';
 
     return this.http.get(url).pipe(
       map((res: any) => {

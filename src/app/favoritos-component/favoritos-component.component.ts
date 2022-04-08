@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
 
@@ -9,8 +10,11 @@ import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
   styleUrls: ['./favoritos-component.component.css']
 })
 export class FavoritosComponentComponent implements OnInit {
+  items: Observable<any[]>;
 
-  constructor(public authService: AuthFirebaseService, public router: Router) { }
+  constructor(public authService: AuthFirebaseService, public router: Router, public firestore: AngularFirestore) {
+   this.items = firestore.collection('items').valueChanges();
+  }
 
   ngOnInit(): void { }
 
