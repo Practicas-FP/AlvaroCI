@@ -42,10 +42,16 @@
                     Buy
                   </button>
                 </a>
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(comic.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(comic.id, comic.title, comic.thumbnail.path, comic.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
-                <button class="like btn btn-default" type="button">
+                <button *ngIf="read" class="like btn btn-default" (click)="eliminarRead(comic.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-book-fill"></i>
+                </button>
+                <button *ngIf="!read" class="like btn btn-default" (click)="agregarRead(comic.id, comic.title, comic.thumbnail.path, comic.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-book"></i>
                 </button>
               </div>
@@ -132,10 +138,16 @@
                     Buy
                   </button>
                 </a>
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(comic.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(comic.id, comic.title, comic.thumbnail.path, comic.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
-                <button class="like btn btn-default" type="button">
+                <button *ngIf="read" class="like btn btn-default" (click)="eliminarRead(comic.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-book-fill"></i>
+                </button>
+                <button *ngIf="!read" class="like btn btn-default" (click)="agregarRead(comic.id, comic.title, comic.thumbnail.path, comic.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-book"></i>
                 </button>
               </div>
@@ -202,7 +214,10 @@
               </div>
               <p class="product-description">{{ character.description }}</p>
               <div class="action">
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(character.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(character.id, character.name, character.thumbnail.path, character.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
               </div>
@@ -282,7 +297,10 @@
               <p class="product-description">Description not avalible due 'The Decimation'. Consult with Thanos
                 for more information.</p>
               <div class="action">
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(character.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(character.id, character.name, character.thumbnail.path, character.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
               </div>
@@ -353,7 +371,10 @@
               <h3 class="product-title">{{ creator.fullName }}</h3>
               <p class="product-description">{{ creator.description }}</p>
               <div class="action">
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(creator.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(creator.id, creator.fullName, creator.thumbnail.path, creator.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
               </div>
@@ -435,7 +456,10 @@
               <p class="product-description">Description not avalible due 'The Decimation'. Consult with Thanos
                 for more information.</p>
               <div class="action">
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(creator.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(creator.id, creator.fullName, creator.thumbnail.path, creator.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
               </div>
@@ -541,10 +565,16 @@
                     Buy
                   </button>
                 </a>
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(serie.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(serie.id, serie.title, serie.thumbnail.path, serie.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
-                <button class="like btn btn-default" type="button">
+                <button *ngIf="read" class="like btn btn-default" (click)="eliminarRead(serie.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-book-fill"></i>
+                </button>
+                <button *ngIf="!read" class="like btn btn-default" (click)="agregarRead(serie.id, serie.title, serie.thumbnail.path, serie.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-book"></i>
                 </button>
               </div>
@@ -623,10 +653,16 @@
                     Buy
                   </button>
                 </a>
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(serie.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(serie.id, serie.title, serie.thumbnail.path, serie.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
-                <button class="like btn btn-default" type="button">
+                <button *ngIf="read" class="like btn btn-default" (click)="eliminarRead(serie.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-book-fill"></i>
+                </button>
+                <button *ngIf="!read" class="like btn btn-default" (click)="agregarRead(serie.id, serie.title, serie.thumbnail.path, serie.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-book"></i>
                 </button>
               </div>
@@ -702,10 +738,16 @@
                 <strong>End date:</strong> {{ events.end }}
               </p>
               <div class="action">
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(events.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(events.id, events.title, events.thumbnail.path, events.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
-                <button class="like btn btn-default" type="button">
+                <button *ngIf="read" class="like btn btn-default" (click)="eliminarRead(events.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-book-fill"></i>
+                </button>
+                <button *ngIf="!read" class="like btn btn-default" (click)="agregarRead(events.id, events.title, events.thumbnail.path, events.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-book"></i>
                 </button>
               </div>
@@ -816,10 +858,16 @@
                 <strong>End date:</strong> {{ events.end }}
               </p>
               <div class="action">
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(events.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(events.id, events.title, events.thumbnail.path, events.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
-                <button class="like btn btn-default" type="button">
+                <button *ngIf="read" class="like btn btn-default" (click)="eliminarRead(events.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-book-fill"></i>
+                </button>
+                <button *ngIf="!read" class="like btn btn-default" (click)="agregarRead(events.id, events.title, events.thumbnail.path, events.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-book"></i>
                 </button>
               </div>
@@ -930,10 +978,16 @@
               <p class="vote"><strong>Last modified:</strong> {{ stories.modified }}</p>
               <p class="vote"><strong>Type: </strong>{{ stories.type }}</p>
               <div class="action">
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(stories.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav2(stories.id, stories.title)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
-                <button class="like btn btn-default" type="button">
+                <button *ngIf="read" class="like btn btn-default" (click)="eliminarRead(stories.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-book-fill"></i>
+                </button>
+                <button *ngIf="!read" class="like btn btn-default" (click)="agregarRead2(stories.id, stories.title)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-book"></i>
                 </button>
               </div>
@@ -1042,10 +1096,16 @@
               <p class="vote"><strong>Last modified:</strong> {{ stories.modified }}</p>
               <p class="vote"><strong>Type: </strong>{{ stories.type }}</p>
               <div class="action">
-                <button class="like btn btn-default" type="button" style="margin-right: 10px; margin-left: 10px">
+                <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(stories.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav2(stories.id, stories.title)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
-                <button class="like btn btn-default" type="button">
+                <button *ngIf="read" class="like btn btn-default" (click)="eliminarRead(stories.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-book-fill"></i>
+                </button>
+                <button *ngIf="!read" class="like btn btn-default" (click)="agregarRead2(stories.id, stories.title)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-book"></i>
                 </button>
               </div>

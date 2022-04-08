@@ -13,11 +13,12 @@ export const environment = {
   production: false,
   baseURLcomics: 'http:gateway.marvel.com/v1/public/comics?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c',
   baseURLcharacters: 'http:gateway.marvel.com/v1/public/characters?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c',
-  
+
   firebaseConfig: {
     apiKey: 'AIzaSyCHSvfEuzPQwNNvvQYyx07ZL-21lTjH8uc',
     authDomain: 'marvel-30077.firebaseapp.com',
     projectId: 'marvel-30077',
+    databaseURL: 'https://marvel-30077-default-rtdb.europe-west1.firebasedatabase.app/',
     storageBucket: 'marvel-30077.appspot.com',
     messagingSenderId: '777534832823',
     appId: '1:777534832823:web:75d15e5ce94b3bf1eecd32',

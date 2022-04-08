@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { take } from 'rxjs';
 import { ApiService } from '../service/api/api.service';
 import { SearchServicioService } from '../service/search/search-servicio.service';
 
-type RequestInfo = {
-  next: string;
-};
 @Component({
   selector: 'app-comics-component',
   templateUrl: './comics-component.component.html',
@@ -16,9 +12,6 @@ type RequestInfo = {
 export class ComicsComponentComponent implements OnInit {
 
   title = 'Marvel-Comics';
-  info: RequestInfo = {
-    next: "null",
-  };
   public comics: Array<any> = [];
   public offset: any = '0';
   public limit: any = '100';
@@ -36,5 +29,4 @@ export class ComicsComponentComponent implements OnInit {
       this.comics = res.data.results;
     });
   }
-
 }

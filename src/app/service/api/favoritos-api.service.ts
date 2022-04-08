@@ -1,21 +1,37 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject } from '@angular/fire/compat/database';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { getDatabase, ref, remove, set } from '@angular/fire/database';
+import { push } from 'firebase/database';
+import { Comic } from 'src/app/interface/comicInterface.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritosApiService {
-  tutorial!: AngularFireObject<any>;
-  tutorials!: Observable<any[]>;
-  constructor(private db: AngularFireDatabase) { }
-  
-  agregarFav(){
-    this.tutorial= this.db.object('tutorial');
+
+  constructor() { }
+
+  agregarFav(accion: string,id: string, title: string, image: string, extension: string){
+    const db = getDatabase();
+    push(ref(db, `users/favoritos/${accion}/${id}`), {
+      id: id,
+      title: title,
+      image : image,
+      extension: extension
+    });
   }
-  quitarFac(){
-    const tutRef = this.db.object('tutorial');
-    tutRef.remove();
+
+  agregarFav2(accion: string,id: string, title: string){
+    const db = getDatabase();
+    push(ref(db, `users/favoritos/${accion}/${id}`), {
+      id: id,
+      title: title
+    });
+  }
+
+  quitarFav(accion: string, id: String){
+    const db = getDatabase();
+    remove(ref(db, `users/favoritos/${accion}/${id}`),);
+
   }
 }
+
