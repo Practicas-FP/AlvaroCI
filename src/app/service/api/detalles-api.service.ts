@@ -27,7 +27,7 @@ export class DetallesApiService {
   public consultaSeriesMarvel(id: any) {
 
     let url =
-      'http://gateway.marvel.com/v1/public/series?id=' + id + 'ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
+      'http://gateway.marvel.com/v1/public/series?id=' + id + '&ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
       + '&offset=0&limit=1';
 
     return this.http.get(url).pipe(
@@ -41,7 +41,7 @@ export class DetallesApiService {
   public consultaCharactersMarvel(id: any) {
 
     let url =
-      'http://gateway.marvel.com/v1/public/characters?id=' + id + 'ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
+      'http://gateway.marvel.com/v1/public/characters?id=' + id + '&ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
       + '&offset=0&limit=1';
 
     return this.http.get(url).pipe(
@@ -55,7 +55,7 @@ export class DetallesApiService {
   public consultaStoriesMarvel(id: any) {
 
     let url =
-      'http://gateway.marvel.com/v1/public/stories?id=' + id + 'ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
+      'http://gateway.marvel.com/v1/public/stories?id=' + id + '&ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
       + '&offset=0&limit=1';
 
     return this.http.get(url).pipe(
@@ -69,7 +69,7 @@ export class DetallesApiService {
   public consultaEventsMarvel(id: any) {
 
     let url =
-      'http://gateway.marvel.com/v1/public/events?id=' + id + 'ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
+      'http://gateway.marvel.com/v1/public/events?id=' + id + '&ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
       + '&offset=0&limit=1';
 
     return this.http.get(url).pipe(
@@ -83,7 +83,7 @@ export class DetallesApiService {
   public consultaCreatorsMarvel(id: any) {
 
     let url =
-      'http://gateway.marvel.com/v1/public/creators?id=' + id + 'ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
+      'http://gateway.marvel.com/v1/public/creators?id=' + id + '&ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
       + '&offset=0&limit=1';
 
     return this.http.get(url).pipe(

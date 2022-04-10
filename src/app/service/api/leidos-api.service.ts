@@ -6,11 +6,12 @@ import { getDatabase, push, ref, remove } from 'firebase/database';
 })
 export class LeidosApiService {
 
-  constructor() { }
+  constructor(){}
 
-  agregarRead(accion: string,id: string, title: string, image: string, extension: string){
+
+  agregarRead(uid: string, accion: string,id: string, title: string, image: string, extension: string){
     const db = getDatabase();
-    push(ref(db, `users/leido/${accion}/${id}`), {
+    push(ref(db, `users/${uid}/leido/${accion}/${id}`), {
       id: id,
       title: title,
       image : image,
@@ -18,16 +19,16 @@ export class LeidosApiService {
     });
   }
 
-  agregarRead2(accion: string,id: string, title: string){
+  agregarRead2(uid: string, accion: string,id: string, title: string){
     const db = getDatabase();
-    push(ref(db, `users/leido/${accion}/${id}`), {
+    push(ref(db, `users/${uid}/leido/${accion}/${id}`), {
       id: id,
       title: title
     });
   }
 
-  quitarRead(accion: string,id: String){
+  quitarRead(uid: string, accion: string,id: String){
     const db = getDatabase();
-    remove(ref(db, `users/leido/${accion}/${id}`),);
+    remove(ref(db, `users/${uid}/leido/${accion}/${id}`),);
   }
 }

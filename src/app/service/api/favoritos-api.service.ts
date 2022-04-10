@@ -1,36 +1,35 @@
 import { Injectable } from '@angular/core';
 import { getDatabase, ref, remove, set } from '@angular/fire/database';
 import { push } from 'firebase/database';
-import { Comic } from 'src/app/interface/comicInterface.interface';
+import { AuthFirebaseService } from '../firebase/auth-firebase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritosApiService {
+  constructor(private auth: AuthFirebaseService) { }
 
-  constructor() { }
-
-  agregarFav(accion: string,id: string, title: string, image: string, extension: string){
+  agregarFav(uid: string, accion: string, id: string, title: string, image: string, extension: string) {
     const db = getDatabase();
-    push(ref(db, `users/favoritos/${accion}/${id}`), {
+    push(ref(db, `users/${uid}/favoritos/${accion}/${id}`), {
       id: id,
       title: title,
-      image : image,
+      image: image,
       extension: extension
     });
   }
 
-  agregarFav2(accion: string,id: string, title: string){
+  agregarFav2(uid: string, accion: string, id: string, title: string) {
     const db = getDatabase();
-    push(ref(db, `users/favoritos/${accion}/${id}`), {
+    push(ref(db, `users/${uid}/favoritos/${accion}/${id}`), {
       id: id,
       title: title
     });
   }
 
-  quitarFav(accion: string, id: String){
+  quitarFav(uid: string, accion: string, id: String) {
     const db = getDatabase();
-    remove(ref(db, `users/favoritos/${accion}/${id}`),);
+    remove(ref(db, `users/${uid}/favoritos/${accion}/${id}`),);
 
   }
 }

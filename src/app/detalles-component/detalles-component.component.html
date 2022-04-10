@@ -220,6 +220,7 @@
                 <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(character.id, character.name, character.thumbnail.path, character.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
                   <i class="bi bi-heart"></i>
                 </button>
+                <label>{{ character.id}}</label>
               </div>
               <br />
             </div>
@@ -1186,3 +1187,4 @@
     </div>
   </div>
 </container-element>
+
