@@ -12,21 +12,11 @@ export class SearchComponentComponent implements OnInit {
 
   constructor(private searchByName: DetallesApiService, private route: Router) { }
 
-  search(value: any) {
-    this.newItemEvent.emit(value);
-  }
+
 
   ngOnInit(): void {
   }
 
-  onKeyup(key2: string) {
-    console.log(key2);
-    this.route.navigate(['/comics', key2])
-  }
-
-  btnSearch(key2: string) {
-    console.log(key2);
-    this.searchByName.consultaByTitleMarvel(key2);
-  }
+  
 
 }

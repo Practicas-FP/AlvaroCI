@@ -108,33 +108,8 @@ const appRoutes: Routes = [
   },
   {
     //Búsqueda
-    path: 'series/:id',
-    component: SeriesComponentComponent,
-  },
-  {
-    //Búsqueda
-    path: 'comics/:id',
-    component: ComicsComponentComponent,
-  },
-  {
-    //Búsqueda
-    path: 'personajes/:id',
-    component: charactersComponentComponent,
-  },
-  {
-    //Búsqueda
-    path: 'events/:id',
-    component: EventsComponentComponent,
-  },
-  {
-    //Búsqueda
-    path: 'stories/:id',
-    component: StoriesComponentComponent,
-  },
-  {
-    //Búsqueda
-    path: 'creators/:id',
-    component: CreatorsComponentComponent,
+    path: 'search/:id',
+    component: HomeComponentComponent,
   },
   {
     //Error 404

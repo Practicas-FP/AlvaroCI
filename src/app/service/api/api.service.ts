@@ -69,7 +69,7 @@ export class ApiService {
   public consultaStoriesMarvel(offset: any, limit: any) {
 
     let url2 =
-    'http://gateway.marvel.com/v1/public/stories?ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
+    'http://gateway.marvel.com/v1/public/stories?orderBy=id&ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c'
     + '&offset=' + offset + '&limit=' + limit;
 
     let url =
