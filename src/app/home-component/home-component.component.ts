@@ -12,6 +12,7 @@ export class HomeComponentComponent implements OnInit {
   accion: string = "vacio";
   title = 'Marvel-Comics';
   disabled: boolean = false;
+  creator: boolean = false;
   public comics: Array<any> = [];
   public page: number = 0;
 
@@ -51,8 +52,11 @@ export class HomeComponentComponent implements OnInit {
     if (this.accion === "Historias") {
       this.disabled = true;
       this.llamadaGeneral("a");
+    } else if (this.accion === "Creadores") {
+      this.creator = true;
     } else {
       this.disabled = false;
+      this.creator = false;
     }
   }
 

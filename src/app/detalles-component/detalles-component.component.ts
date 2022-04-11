@@ -104,7 +104,7 @@ export class DetallesComponentComponent implements OnInit {
         console.log(snapshot.val());
         this.read = true;
       } else {
-        console.log("No data available");
+        console.log("No read");
         this.read = false;
       }
     }).catch((error) => {
@@ -134,7 +134,7 @@ export class DetallesComponentComponent implements OnInit {
         console.log(snapshot.val());
         this.read = true;
       } else {
-        console.log("No data available");
+        console.log("No read");
         this.read = false;
       }
     }).catch((error) => {

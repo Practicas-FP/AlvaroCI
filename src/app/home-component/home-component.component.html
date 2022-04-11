@@ -18,34 +18,40 @@
     <div class="row">
       <div class="col-xs-8 col-xs-offset-2">
 
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="filtroBusqueda" id="IdSeries" type="radio" value="Series" (click)="filtro($event)">
-            <label class="form-check-label" for="IdSeries">Series</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="filtroBusqueda" id="Comics" type="radio" value="Comics" (click)="filtro($event)">
-            <label class="form-check-label" for="Comics">Comics</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="filtroBusqueda" id="Personajes" type="radio" value="Personajes" (click)="filtro($event)">
-            <label class="form-check-label" for="Personajes">Personajes</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="filtroBusqueda" id="Eventos" type="radio" value="Eventos" (click)="filtro($event)">
-            <label class="form-check-label" for="Eventos">Eventos</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="filtroBusqueda" id="Historias" type="radio" value="Historias" (click)="filtro($event)">
-            <label class="form-check-label" for="Historias">Historias</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" name="filtroBusqueda" id="Creadores" type="radio" value="Creadores" (click)="filtro($event)">
-            <label class="form-check-label" for="Creadores">Creadores</label>
-          </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="IdSeries" type="radio" value="Series"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="IdSeries">Series</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="Comics" type="radio" value="Comics"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="Comics">Comics</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="Personajes" type="radio" value="Personajes"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="Personajes">Personajes</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="Eventos" type="radio" value="Eventos"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="Eventos">Eventos</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="Historias" type="radio" value="Historias"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="Historias">Historias</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="Creadores" type="radio" value="Creadores"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="Creadores">Creadores</label>
+        </div>
         <div class="input-group">
           <input type="hidden" name="search_param" value="all" id="search_param">
-          <input type="search" class="form-control" name="Search" id="SeacrhBarra" [disabled]="disabled" placeholder="Search term..." #Search
-            autofocus (keyup)="onKeyup(Search.value)">
+          <input type="search" class="form-control" name="Search" id="SeacrhBarra" [disabled]="disabled"
+            placeholder="Search term..." #Search autofocus (keyup)="onKeyup(Search.value)">
           <span class="input-group-btn">
             <button style="margin-left: 10px;" class="btn btn-light" (click)="btnSearch(Search.value)"
               type="button"><span class="bi bi-search"></span></button>
@@ -57,18 +63,40 @@
 
   <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
     <div class="col" *ngFor="let comic of comics | paginate: {itemsPerPage: 12, currentPage: page}">
-      <div class="card animate__bounceIn">
-        <a (click)="detallesSearch(comic.id)"><img
-            src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" class="card-img-top img-fluid"
-            style="height: 300px" />
+
+      <div class="card animate__bounceIn" *ngIf="disabled">
+        <a (click)="detallesSearch(comic.id)">
+
+        <div class="card-body">
+          <h5 class="card-title">{{ comic.title }}</h5>
+        </div>
+      </a>
+      </div>
+
+      <div class="card animate__bounceIn" *ngIf="creator">
+        <a (click)="detallesSearch(comic.id)"><img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}"
+            class="card-img-top img-fluid" style="height: 300px" />
         </a>
         <div class="card-body">
           <h5 class="card-title">{{ comic.name }}</h5>
           <div>
-            <p class="card-text"><strong>{{ comic.title }}</strong></p>
+            <p class="card-text"><strong>{{ comic.fullName }}</strong></p>
           </div>
         </div>
       </div>
+
+        <div class="card animate__bounceIn" *ngIf="!creator && !disabled">
+          <a (click)="detallesSearch(comic.id)"><img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}"
+              class="card-img-top img-fluid" style="height: 300px" />
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{ comic.name }}</h5>
+            <div>
+              <p class="card-text"><strong>{{ comic.title }}</strong></p>
+            </div>
+          </div>
+        </div>
+
     </div>
   </div>
   <div style="text-align: center;">
