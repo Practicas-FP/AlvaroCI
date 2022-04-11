@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
 export class PerfilComponentComponent implements OnInit {
   public logueado: boolean;
   public usuario: any;
-  constructor(private service: AuthFirebaseService) {
+  public uid: string = "invitado";
+
+  constructor(private service: AuthFirebaseService, private route: Router) {
     this.logueado = false;
   }
 
@@ -22,8 +25,15 @@ export class PerfilComponentComponent implements OnInit {
       if (res != null) {
         this.logueado = true;
         this.usuario = res;
+        this.uid = res.uid;
       } else {
         this.logueado = false;
+        this.uid = "invitado";
+      }
+      if (this.uid === "invitado") {
+        this.route.navigate(['login']);
+      } else {
+        this.route.navigate(['perfil']);
       }
     });
   }

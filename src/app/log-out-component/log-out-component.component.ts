@@ -12,12 +12,11 @@ export class LogOutComponentComponent implements OnInit {
   constructor(private service : AuthFirebaseService, private router : Router) { }
 
   ngOnInit(): void {
+    this.logOut();
   }
 
   logOut(){
     this.service.logOut();
-    console.log("Sesion cerrada");
     this.router.navigate([""]);
   }
-
 }

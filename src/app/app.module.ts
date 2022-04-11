@@ -27,7 +27,6 @@ import { StoriesComponentComponent } from './stories-component/stories-component
 import { FavoritosComponentComponent } from './favoritos-component/favoritos-component.component';
 import { VistosComponentComponent } from './vistos-component/vistos-component.component';
 import { DetallesComponentComponent } from './detalles-component/detalles-component.component';
-import { SearchComponentComponent } from './search-component/search-component.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 
 const appRoutes: Routes = [
@@ -138,7 +137,6 @@ const appRoutes: Routes = [
     FavoritosComponentComponent,
     VistosComponentComponent,
     DetallesComponentComponent,
-    SearchComponentComponent,
   ],
   imports: [
     BrowserModule,

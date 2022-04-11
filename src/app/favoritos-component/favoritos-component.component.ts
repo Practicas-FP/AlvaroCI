@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
 
 @Component({
@@ -10,21 +8,32 @@ import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
   styleUrls: ['./favoritos-component.component.css']
 })
 export class FavoritosComponentComponent implements OnInit {
-  items: Observable<any[]>;
+  public logueado: boolean;
+  public usuario: any;
+  public uid: string = "invitado";
+  public items: Array<any> = [];
 
-  constructor(public authService: AuthFirebaseService, public router: Router, public firestore: AngularFirestore) {
-   this.items = firestore.collection('items').valueChanges();
+  constructor(private service: AuthFirebaseService, private route: Router) {
+    this.logueado = false;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.usuarioLogueado();
+  }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.authService.getInfoUsuarioLoggeado()) {
-      this.router.navigate(['login']);
-      return false;
-    }
-    return true;
+  usuarioLogueado() {
+    this.service.getInfoUsuarioLoggeado().subscribe((res) => {
+      if (res != null) {
+        this.logueado = true;
+        this.usuario = res;
+        this.uid = res.uid;
+      } else {
+        this.logueado = false;
+        this.uid = "invitado";
+      }
+      if (this.uid === "invitado") {
+        this.route.navigate(['login']);
+      }
+    });
   }
 }

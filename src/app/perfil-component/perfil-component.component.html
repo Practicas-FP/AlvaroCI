@@ -1,24 +1,50 @@
-<div *ngIf="logueado; else cargando">
+<div *ngIf="logueado; else cargando" style="margin-top: 50px;">
   <div *ngIf="usuario.photoURL; else OutGoogle">
-    <div class="card" style="width: 18rem">
-      <img src="{{ usuario.photoURL }}" class="card-img-top img-fluid" width="200px" height="200px"/>
-      <div class="card-body">
-        <h5 class="card-title">USUARIO : {{ usuario.displayName }}</h5>
-        <p class="card-text">EMAIL : {{ usuario.email }}</p>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+      <div class="col" style="margin-right: 25%;">
+        <div class="card animate__bounceIn">
+          <img src="{{ usuario.photoURL }}" class="card-img-top img-fluid" width="200px" height="200px" />
+          <div class="card-body">
+            <h5 class="card-title">USUARIO : {{ usuario.displayName }}</h5>
+            <p class="card-text">EMAIL : {{ usuario.email }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card animate__bounceIn">
+          <a [routerLink]="['/favoritos']"><img src="./../../../assets/images/favourites.png"
+              class="card-img-top img-fluid" width="200px" height="200px" /></a>
+
+          <div class="card-body">
+            <h5 class="card-title">FAVORITOS()</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card animate__bounceIn">
+          <a [routerLink]="['/read']">
+            <img src="./../../../assets/images/libro-abierto.png" class="card-img-top img-fluid" width="200px"
+              height="200px" /></a>
+          <div class="card-body">
+            <h5 class="card-title">LEIDOS()</h5>
+          </div>
+        </div>
       </div>
     </div>
+
+
   </div>
 </div>
 
 <ng-template #cargando>
   <div class="container">
-    <img src="./../../../assets/images/perfil.png" width="400px" height="400px"/>
+    <img src="./../../../assets/images/perfil.png" width="400px" height="400px" />
   </div>
 </ng-template>
 
 <ng-template #OutGoogle>
   <div class="card" style="width: 18rem">
-    <img src="./../../../assets/images/perfil.png" class="card-img-top img-fluid" width="200px" height="200px"/>
+    <img src="./../../../assets/images/perfil.png" class="card-img-top img-fluid" width="200px" height="200px" />
     <div *ngIf="usuario.displayName == null" class="card-body">
       <h5 class="card-title">USUARIO : {{ usuario.email }}</h5>
       <p class="card-text">EMAIL : {{ usuario.email }}</p>
