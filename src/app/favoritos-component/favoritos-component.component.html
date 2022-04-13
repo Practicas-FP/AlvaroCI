@@ -1,1 +1,106 @@
-<p>works</p>
+<div class="container" style="background-color: antiquewhite">
+  <h1 class="mt-3 text-center animate__animated animate__bounce slower" style="
+      color: maroon;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+        'Lucida Sans', Arial, sans-serif;
+    ">
+    <strong>Marvel Avengers Universe </strong>
+  </h1>
+  <h2 class="mt-3 text-center animate__animated animate__bounce slower" style="
+      color: darkslategray;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+        'Lucida Sans', Arial, sans-serif;
+    ">
+    <strong>Listado Universal </strong>
+  </h2>
+
+  <div class="container-center" style="margin-top: 20px; margin-bottom: 10p;">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="IdSeries" type="radio" value="serie"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="IdSeries">Series</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="Comics" type="radio" value="comic"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="Comics">Comics</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="Personajes" type="radio" value="character"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="Personajes">Personajes</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="Eventos" type="radio" value="events"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="Eventos">Eventos</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="Historias" type="radio" value="stories"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="Historias">Historias</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="filtroBusqueda" id="Creadores" type="radio" value="creators"
+            (click)="filtro($event)">
+          <label class="form-check-label" for="Creadores">Creadores</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+    <div class="col" *ngFor="let comic of items | paginate: {itemsPerPage: 4, currentPage: page}">
+
+      <div class="card animate__bounceIn" *ngIf="stories">
+        <div class="card-body">
+          <h5 class="card-title">{{ comic.title }}</h5>
+        </div>
+      </div>
+
+      <div class="card animate__bounceIn" *ngIf="creators">
+        <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" class="card-img-top img-fluid"
+          style="height: 300px" />
+
+        <div class="card-body">
+          <h5 class="card-title">{{ comic.fullName }}</h5>
+          <div>
+            <p class="card-text"><strong>{{ comic.fullName }}</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card animate__bounceIn" *ngIf="!creators && !stories">
+        <div *ngIf="">
+          <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" class="card-img-top img-fluid"
+            style="height: 300px" />
+          <div class="card-body">
+            <h5 class="card-title">{{ comic.name }}</h5>
+            <div>
+              <p class="card-text"><strong>{{ comic.title }}</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div style="text-align: center;">
+    <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente">
+    </pagination-controls>
+  </div>
+</div>
+<!-- <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(comic.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart-fill"></i>
+                </button>
+                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(comic.id, comic.title, comic.thumbnail.path, comic.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-heart"></i>
+                </button>
+                <button *ngIf="read" class="like btn btn-default" (click)="eliminarRead(comic.id)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-book-fill"></i>
+                </button>
+                <button *ngIf="!read" class="like btn btn-default" (click)="agregarRead(comic.id, comic.title, comic.thumbnail.path, comic.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
+                  <i class="bi bi-book"></i>
+                </button> -->

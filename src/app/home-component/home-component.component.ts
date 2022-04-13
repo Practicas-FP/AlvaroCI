@@ -50,12 +50,16 @@ export class HomeComponentComponent implements OnInit {
   filtro(event: Event) {
     this.accion = (<HTMLInputElement>event.target).value;
     if (this.accion === "Historias") {
+      this.comics = [];
       this.disabled = true;
       this.llamadaGeneral("a");
     } else if (this.accion === "Creadores") {
       this.creator = true;
+      this.comics = [];
+      this.disabled = false;
     } else {
       this.disabled = false;
+      this.comics = [];
       this.creator = false;
     }
   }
