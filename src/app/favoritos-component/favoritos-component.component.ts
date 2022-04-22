@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthFirebaseService } from '../service/firebase/auth-firebase.service';
 import { getDatabase, ref, child, get } from "firebase/database";
-import { ApiService } from '../service/api/api.service';
+import { DetallesApiService } from '../service/api/detalles-api.service';
 
 @Component({
   selector: 'app-favoritos-component',
@@ -25,7 +25,7 @@ export class FavoritosComponentComponent implements OnInit {
   public idEvents: Array<any> = [];
   public idCreators: Array<any> = [];
 
-  constructor(private service: AuthFirebaseService, private route: Router, private consulta: ApiService) {
+  constructor(private service: AuthFirebaseService, private route: Router, private consulta: DetallesApiService) {
     this.logueado = false;
   }
 
@@ -33,12 +33,16 @@ export class FavoritosComponentComponent implements OnInit {
     this.usuarioLogueado();
   }
 
+  detallesSearch(id: string) {
+    this.route.navigate(['detalles/', id], { queryParams: { accion: this.accion } });
+  }
+
   filtro(event: Event) {
     this.accion = (<HTMLInputElement>event.target).value;
     if (this.accion === "stories") {
       this.stories = true;
       this.creators = false;
-    } else if (this.accion === "creators") {
+    } else if (this.accion === "creator") {
       this.stories = false;
       this.creators = true;
     } else {
@@ -55,30 +59,89 @@ export class FavoritosComponentComponent implements OnInit {
         var array: Array<any> = [];
         switch (this.accion) {
           case "comic":
-            const data = snapshot.val();
-            console.log('prueba 0: ',data);
+            for(let i = this.items.length; i > 0; i--){
+              this.items.pop();
+            }
+            var data = snapshot.val();
             array.push(data);
-            console.log('prueba 1: ',array);
             this.idComic.push(array[0]);
 
-            this.consulta.consultaComicsMarvel("0","100").subscribe((res) => {
-              console.log('Respuestas:  ', res.data.results);
-              this.items = res.data.results;
-              console.log(this.items);
-              console.log(this.idComic);
-            });
+            for (const [key] of Object.entries(array[0])) {
+              this.consulta.consultaComicsMarvel(`${key}`).subscribe((res) => {
+                this.items.push(res.data.results[0]) ;
+              });
+            }
             break;
-          case "series":
-            break;
-            case "series":
-            break;
-            case "series":
-            break;
-            case "series":
-            break;
-            case "series":
-            break;
+          case "serie":
+            for(let i = this.items.length; i > 0; i--){
+              this.items.pop();
+            }
+            var data = snapshot.val();
+            array.push(data);
+            this.idComic.push(array[0]);
 
+            for (const [key] of Object.entries(array[0])) {
+              this.consulta.consultaSeriesMarvel(`${key}`).subscribe((res) => {
+                this.items.push(res.data.results[0]) ;
+              });
+            }
+            break;
+          case "character":
+            for(let i = this.items.length; i > 0; i--){
+              this.items.pop();
+            }
+            var data = snapshot.val();
+            array.push(data);
+            this.idComic.push(array[0]);
+
+            for (const [key] of Object.entries(array[0])) {
+              this.consulta.consultaCharactersMarvel(`${key}`).subscribe((res) => {
+                this.items.push(res.data.results[0]) ;
+              });
+            }
+            break;
+          case "creator":
+            for(let i = this.items.length; i > 0; i--){
+              this.items.pop();
+            }
+            var data = snapshot.val();
+            array.push(data);
+            this.idComic.push(array[0]);
+
+            for (const [key] of Object.entries(array[0])) {
+              this.consulta.consultaCreatorsMarvel(`${key}`).subscribe((res) => {
+                this.items.push(res.data.results[0]) ;
+              });
+            }
+            break;
+          case "stories":
+            for(let i = this.items.length; i > 0; i--){
+              this.items.pop();
+            }
+            var data = snapshot.val();
+            array.push(data);
+            this.idComic.push(array[0]);
+
+            for (const [key] of Object.entries(array[0])) {
+              this.consulta.consultaStoriesMarvel(`${key}`).subscribe((res) => {
+                this.items.push(res.data.results[0]) ;
+              });
+            }
+            break;
+          case "events":
+            for(let i = this.items.length; i > 0; i--){
+              this.items.pop();
+            }
+            var data = snapshot.val();
+            array.push(data);
+            this.idComic.push(array[0]);
+
+            for (const [key] of Object.entries(array[0])) {
+              this.consulta.consultaEventsMarvel(`${key}`).subscribe((res) => {
+                this.items.push(res.data.results[0]) ;
+              });
+            }
+            break;
         }
       } else {
         console.log("No Fav");

@@ -15,9 +15,8 @@
   </h2>
 
   <div class="container-right" style="margin-top: 20px; margin-bottom: 10p;">
-    <div class="row">
+    <div class="row" style="text-align: center;">
       <div class="col-xs-8 col-xs-offset-2">
-
         <div class="form-check form-check-inline">
           <input class="form-check-input" name="filtroBusqueda" id="IdSeries" type="radio" value="Series"
             (click)="filtro($event)">
@@ -63,16 +62,13 @@
 
   <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
     <div class="col" *ngFor="let comic of comics | paginate: {itemsPerPage: 12, currentPage: page}">
-
       <div class="card animate__bounceIn" *ngIf="disabled">
         <a (click)="detallesSearch(comic.id)">
-
         <div class="card-body">
           <h5 class="card-title">{{ comic.title }}</h5>
         </div>
       </a>
       </div>
-
       <div class="card animate__bounceIn" *ngIf="creator">
         <a (click)="detallesSearch(comic.id)"><img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}"
             class="card-img-top img-fluid" style="height: 300px" />
@@ -84,7 +80,6 @@
           </div>
         </div>
       </div>
-
         <div class="card animate__bounceIn" *ngIf="!creator && !disabled">
           <a (click)="detallesSearch(comic.id)"><img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}"
               class="card-img-top img-fluid" style="height: 300px" />
@@ -96,7 +91,6 @@
             </div>
           </div>
         </div>
-
     </div>
   </div>
   <div style="text-align: center;">

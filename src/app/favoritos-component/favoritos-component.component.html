@@ -15,7 +15,7 @@
   </h2>
 
   <div class="container-center" style="margin-top: 20px; margin-bottom: 10p;">
-    <div class="row">
+    <div class="row" style="text-align: center;">
       <div class="col-xs-8 col-xs-offset-2">
         <div class="form-check form-check-inline">
           <input class="form-check-input" name="filtroBusqueda" id="IdSeries" type="radio" value="serie"
@@ -43,7 +43,7 @@
           <label class="form-check-label" for="Historias">Historias</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" name="filtroBusqueda" id="Creadores" type="radio" value="creators"
+          <input class="form-check-input" name="filtroBusqueda" id="Creadores" type="radio" value="creator"
             (click)="filtro($event)">
           <label class="form-check-label" for="Creadores">Creadores</label>
         </div>
@@ -56,14 +56,17 @@
 
       <div class="card animate__bounceIn" *ngIf="stories">
         <div class="card-body">
-          <h5 class="card-title">{{ comic.title }}</h5>
+          <a (click)="detallesSearch(comic.id)">
+            <h5 class="card-title">{{ comic.title }}</h5>
+          </a>
         </div>
       </div>
 
       <div class="card animate__bounceIn" *ngIf="creators">
-        <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" class="card-img-top img-fluid"
-          style="height: 300px" />
-
+        <a (click)="detallesSearch(comic.id)">
+          <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" class="card-img-top img-fluid"
+            style="height: 300px" />
+        </a>
         <div class="card-body">
           <h5 class="card-title">{{ comic.fullName }}</h5>
           <div>
@@ -73,9 +76,11 @@
       </div>
 
       <div class="card animate__bounceIn" *ngIf="!creators && !stories">
-        <div *ngIf="">
-          <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" class="card-img-top img-fluid"
-            style="height: 300px" />
+        <div>
+          <a (click)="detallesSearch(comic.id)">
+            <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" class="card-img-top img-fluid"
+              style="height: 300px" />
+          </a>
           <div class="card-body">
             <h5 class="card-title">{{ comic.name }}</h5>
             <div>
@@ -92,15 +97,3 @@
     </pagination-controls>
   </div>
 </div>
-<!-- <button *ngIf="fav" class="like btn btn-default" (click)="eliminarFav(comic.id)" type="button" style="margin-right: 10px; margin-left: 10px">
-                  <i class="bi bi-heart-fill"></i>
-                </button>
-                <button *ngIf="!fav" class="like btn btn-default" (click)="agregarFav(comic.id, comic.title, comic.thumbnail.path, comic.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
-                  <i class="bi bi-heart"></i>
-                </button>
-                <button *ngIf="read" class="like btn btn-default" (click)="eliminarRead(comic.id)" type="button" style="margin-right: 10px; margin-left: 10px">
-                  <i class="bi bi-book-fill"></i>
-                </button>
-                <button *ngIf="!read" class="like btn btn-default" (click)="agregarRead(comic.id, comic.title, comic.thumbnail.path, comic.thumbnail.extension)" type="button" style="margin-right: 10px; margin-left: 10px">
-                  <i class="bi bi-book"></i>
-                </button> -->
