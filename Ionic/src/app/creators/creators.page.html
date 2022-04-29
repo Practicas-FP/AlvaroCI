@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Creators</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let comic of creators | paginate: { itemsPerPage: 10, currentPage: cp }"  >
+      <ion-avatar slot="start">
+        <img src="{{ comic.thumbnail.path }}.{{ comic.thumbnail.extension }}" />
+      </ion-avatar>
+      <ion-button fill="outline" (click)="comprobarFav(comic.id, comic.fullName, comic.thumbnail.path, comic.thumbnail.extension)" slot="end">More</ion-button>
+      <ion-label>
+        <h2>{{ comic.fullName }}</h2>
+        <p>{{ comic.description }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div style="text-align: center;">
+    <pagination-controls (pageChange)="cp = $event" previousLabel="Back" nextLabel="Next"></pagination-controls>
+  </div>
+</ion-content>

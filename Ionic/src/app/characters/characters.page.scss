@@ -1,0 +1,13 @@
+/* DOES NOT WORK - not specific enough */
+.action-sheet-group {
+  background: #ffffff;
+}
+
+/* Works - pass "my-custom-class" in cssClass to increase specificity */
+.my-custom-class .action-sheet-group {
+  background: #ffffff;
+}
+
+.my-custom-class {
+  --background: #ffffff;
+}

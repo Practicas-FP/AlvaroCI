@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "marvel-30077": {
+      "hosting": {
+        "app": [
+          "ionic-aci-marvel"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "marvel-30077"
+  }
+}

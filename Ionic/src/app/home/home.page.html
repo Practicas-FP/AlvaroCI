@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-radio-group>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Series</ion-label>
+            <ion-radio mode="md" color="primary" item-left value="Series" (click)="filtro($event)"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>Comics</ion-label>
+            <ion-radio mode="md" color="secondary" item-left value="Comics" (click)="filtro($event)"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>Characters</ion-label>
+            <ion-radio mode="md" color="tertiary" item-left value="Characters" (click)="filtro($event)"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>Events</ion-label>
+            <ion-radio mode="md" color="success" item-left value="Events" (click)="filtro($event)"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>Stories</ion-label>
+            <ion-radio mode="md" color="warning" item-left value="Stories" (click)="filtro($event)"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>Creators</ion-label>
+            <ion-radio mode="md" color="danger" item-left value="Creators" (click)="filtro($event)"></ion-radio>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+
+    <ion-searchbar [animated]="true" placeholder="Search..." name="Search" id="SeacrhBarra" [disabled]="storiesFilter"
+      #Search (keyup)="onKeyup(Search.value)"></ion-searchbar>
+  </ion-list>
+
+  <ion-list>
+    <ion-item *ngFor="let search of searchArray | paginate: { itemsPerPage: 10, currentPage: cp }">
+
+      <ion-card-content *ngIf="storiesFilter">
+        <ion-avatar slot="start">
+          <img src="../../assets/img/Avengers.webp" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ search.title }}</h2>
+          <p *ngIf="search.description">{{ search.description }}</p>
+          <p *ngIf="!search.description">Description not avalible due 'The Decimation'. Consult with Thanos</p>
+        </ion-label>
+        <ion-button fill="outline" (click)="comprobarFav2(search.id, search.title)" slot="end">More</ion-button>
+      </ion-card-content>
+
+      <ion-card-content *ngIf="creatorFilter">
+        <ion-avatar slot="start">
+          <img src="{{ search.thumbnail.path }}.{{ search.thumbnail.extension }}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ search.fullName }}</h2>
+          <p *ngIf="search.description">{{ search.description }}</p>
+          <p *ngIf="!search.description">Description not avalible due 'The Decimation'. Consult with Thanos</p>
+        </ion-label>
+        <ion-button fill="outline"
+          (click)="comprobarFav(search.id, search.fullName, search.thumbnail.path, search.thumbnail.extension)"
+          slot="end">More</ion-button>
+      </ion-card-content>
+
+      <ion-card-content *ngIf="characterFilter">
+        <ion-avatar slot="start">
+          <img src="{{ search.thumbnail.path }}.{{ search.thumbnail.extension }}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ search.name }}</h2>
+          <p *ngIf="search.description">{{ search.description }}</p>
+          <p *ngIf="!search.description">Description not avalible due 'The Decimation'. Consult with Thanos</p>
+        </ion-label>
+        <ion-button fill="outline"
+          (click)="comprobarFav(search.id, search.name, search.thumbnail.path, search.thumbnail.extension)" slot="end">
+          More</ion-button>
+      </ion-card-content>
+
+      <ion-card-content *ngIf="!creatorFilter && !storiesFilter">
+        <ion-avatar slot="start">
+          <img src="{{ search.thumbnail.path }}.{{ search.thumbnail.extension }}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ search.title }}</h2>
+          <p *ngIf="search.description">{{ search.description }}</p>
+          <p *ngIf="!search.description">Description not avalible due 'The Decimation'. Consult with Thanos</p>
+        </ion-label>
+        <ion-button fill="outline"
+          (click)="comprobarFav(search.id, search.title, search.thumbnail.path, search.thumbnail.extension)" slot="end">
+          More</ion-button>
+      </ion-card-content>
+
+    </ion-item>
+  </ion-list>
+
+  <div style="text-align: center;">
+    <pagination-controls (pageChange)="cp = $event" previousLabel="Back" nextLabel="Next"></pagination-controls>
+  </div>
+</ion-content>

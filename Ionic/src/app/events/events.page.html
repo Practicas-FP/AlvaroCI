@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Events</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let event of events | paginate: { itemsPerPage: 10, currentPage: cp }"  >
+      <ion-avatar slot="start">
+        <img src="{{ event.thumbnail.path }}.{{ event.thumbnail.extension }}" />
+      </ion-avatar>
+      <ion-button fill="outline" (click)="comprobarFav(event.id, event.title, event.thumbnail.path, event.thumbnail.extension)" slot="end">More</ion-button>
+      <ion-label>
+        <h2>{{ event.title }}</h2>
+        <p>{{ event.description }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div style="text-align: center;">
+    <pagination-controls (pageChange)="cp = $event" previousLabel="Back" nextLabel="Next"></pagination-controls>
+  </div>
+</ion-content>

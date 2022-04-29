@@ -1,0 +1,108 @@
+<ion-header>
+
+  <ion-toolbar style="text-align: center;">
+    <ion-row>
+      <ion-col>
+        <ion-back-button></ion-back-button>
+      </ion-col>
+      <ion-col>
+        <ion-title>Details</ion-title>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-card *ngFor="let details of marvel" style="text-align: center;">
+    <img *ngIf="action !== 'stories'" src="{{ details.thumbnail.path }}.{{ details.thumbnail.extension }}" width="95%"
+      height="5%" />
+    <img *ngIf="action === 'stories'" src="../../assets/img/Avengers.webp" />
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="details.modified"><strong>Last modified:</strong> {{ details.modified }}
+      </ion-card-subtitle>
+      <ion-card-title *ngIf="action === 'comic' || action === 'events' || action === 'serie' || action === 'stories'">{{ details.title }}</ion-card-title>
+      <ion-card-title *ngIf="action === 'character'">{{ details.name }}</ion-card-title>
+      <ion-card-title *ngIf="action === 'creator'">{{ details.fullName }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content *ngIf="details.description">
+      {{ details.description }}
+    </ion-card-content>
+
+    <ion-card-content *ngIf="!details.description">
+      No description avalible.
+    </ion-card-content>
+
+    <ion-card-content *ngIf="details.prices">
+      <h4 *ngIf="details.prices[0].price !== 0" class="price">
+        Current price: <span> {{ details.prices[0].price }}€</span>
+      </h4>
+      <h4 *ngIf="details.prices[0].price === 0" class="price">
+        Current price: <span> OUT OF STOCK</span>
+      </h4>
+    </ion-card-content>
+
+<ion-card-content *ngIf="action === 'comic' || action === 'events' || action === 'serie'">
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="light">
+      <ion-icon md="caret-back" ios="chevron-back-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button color="light">
+        <ion-icon (click)="addFavBtn(details.title, details.thumbnail.path, details.thumbnail.extension)" name="{{ iconFav }}"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon (click)="addReadBtn(details.title, details.thumbnail.path, details.thumbnail.extension)" name="{{ iconRead }}"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-card-content>
+<ion-card-content *ngIf="action === 'stories'">
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="light">
+      <ion-icon md="caret-back" ios="chevron-back-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button color="light">
+        <ion-icon (click)="addFavBtn2(details.title)" name="{{ iconFav }}"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon (click)="addReadBtn2(details.title)" name="{{ iconRead }}"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-card-content>
+<ion-card-content *ngIf="action === 'creator'">
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="light">
+      <ion-icon md="caret-back" ios="chevron-back-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button color="light">
+        <ion-icon (click)="addFavBtn(details.fullName, details.thumbnail.path, details.thumbnail.extension)" name="{{ iconFav }}"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon (click)="addReadBtn(details.fullName, details.thumbnail.path, details.thumbnail.extension)" name="{{ iconRead }}"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-card-content>
+<ion-card-content *ngIf="action === 'character'">
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="light">
+      <ion-icon md="caret-back" ios="chevron-back-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button color="light">
+        <ion-icon (click)="addFavBtn(details.name, details.thumbnail.path, details.thumbnail.extension)" name="{{ iconFav }}"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon (click)="addReadBtn(details.name, details.thumbnail.path, details.thumbnail.extension)" name="{{ iconRead }}"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-card-content>
+
+  </ion-card>
+
+</ion-content>
