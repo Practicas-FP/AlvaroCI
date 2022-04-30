@@ -95,4 +95,16 @@ export class ApiService {
       retry(5)
     );
   }
+
+  public consultaIDMarvel(action: string, id: any) {
+
+    const url =
+      'http://gateway.marvel.com/v1/public/'+ action +'?id=' + id
+      + '&ts=1000&apikey=d227faa05f90f594c1959e2f56afef55&hash=b83e662f3ade20d32b8e5e4e80eb439c';
+
+    return this.http.get(url).pipe(
+      map((res: any) => res),
+      retry(5)
+    );
+  }
 }

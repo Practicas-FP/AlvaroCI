@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Log In</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-button class="" (click)="logInGoogle()">Google</ion-button>
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" #email required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" #password required></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="primary" (click)="logIn(email.value, password.value);" expand="block">Sign Up</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row style="text-align: center;">
+      <ion-col>
+        <ion-label>Or</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button class="button button-assertive button-block padding" color="danger" (click)="logInGoogle()">Google</ion-button>
+      </ion-col>
+    </ion-row>
+    <a [routerLink]="['/registration']" class="small-text">Don't have account?</a>
+  </form>
 </ion-content>

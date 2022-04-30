@@ -15,6 +15,18 @@ export class LoginPage implements OnInit {
   ngOnInit(): void {
   }
 
+  logIn(email: any, pass: any): void{
+    if(email === '' && pass === ''){
+
+    }else{
+      this.auth.login(email, pass).then(res=> {
+        console.log(res);
+        this.router.navigate(['profile']);
+      });
+    }
+
+  }
+
   logInGoogle(): void{
     this.auth.loginGoogle().then(res=>{
       console.log(res);

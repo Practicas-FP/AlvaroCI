@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthFirebaseService } from './services/firebase/auth-firebase.service';
+import { PhotoService } from './services/photo/photo.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -30,9 +31,11 @@ export class AppComponent implements OnInit {
   public user: any;
   public uid = 'Invitado';
   public userName = 'Unkown';
+  public userName2 = 'Unkown';
+  public userName3: string[] = [];
   public userPhoto = 'Unkown';
 
-  constructor(private auth: AuthFirebaseService) {
+  constructor(private auth: AuthFirebaseService, public picture: PhotoService) {
     this.logueado = false;
   }
 
@@ -47,7 +50,12 @@ export class AppComponent implements OnInit {
         this.user = res;
         this.uid = res.uid;
         this.userName = res.displayName;
+        if(!res.displayName){
+          this.userName3 = res.email.split('@');
+          this.userName2 = this.userName3[0];
+        }
         this.userPhoto = res.photoURL;
+        this.picture.getUserPhoto(this.uid);
       } else {
         this.logueado = false;
       }

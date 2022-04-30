@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ReadPageRoutingModule } from './read-routing.module';
 
 import { ReadPage } from './read.page';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReadPageRoutingModule
+    ReadPageRoutingModule,
+    NgxPaginationModule,
   ],
   declarations: [ReadPage]
 })

@@ -1,9 +1,102 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>read</ion-title>
+  <ion-toolbar style="text-align: center;">
+    <ion-row>
+      <ion-col>
+        <ion-back-button></ion-back-button>
+      </ion-col>
+      <ion-col>
+        <ion-title>Read</ion-title>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-list>
+    <ion-item *ngFor="let view of viewReadCo | paginate: { itemsPerPage: 10, currentPage: cp }">
+      <ion-card-content>
+        <ion-avatar slot="start">
+          <img src="{{ view.thumbnail.path }}.{{ view.thumbnail.extension }}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ view.title }}</h2>
+          <p *ngIf="view.description">{{ view.description }}</p>
+          <p *ngIf="!view.description">Description not avalible due 'The Decimation'. Consult with Thanos</p>
+        </ion-label>
+        <ion-button fill="outline" (click)="presentActionSheet(view.id, 'comic', view.title)" slot="end">More</ion-button>
+      </ion-card-content>
+    </ion-item>
+    <ion-item *ngFor="let view of viewReadSe | paginate: { itemsPerPage: 10, currentPage: cp }">
+      <ion-card-content>
+        <ion-avatar slot="start">
+          <img src="{{ view.thumbnail.path }}.{{ view.thumbnail.extension }}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ view.title }}</h2>
+          <p *ngIf="view.description">{{ view.description }}</p>
+          <p *ngIf="!view.description">Description not avalible due 'The Decimation'. Consult with Thanos</p>
+        </ion-label>
+        <ion-button fill="outline" (click)="presentActionSheet(view.id, 'serie', view.title)" slot="end">More</ion-button>
+      </ion-card-content>
+    </ion-item>
+    <ion-item *ngFor="let view of viewReadEv | paginate: { itemsPerPage: 10, currentPage: cp }">
+      <ion-card-content>
+        <ion-avatar slot="start">
+          <img src="{{ view.thumbnail.path }}.{{ view.thumbnail.extension }}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ view.title }}</h2>
+          <p *ngIf="view.description">{{ view.description }}</p>
+          <p *ngIf="!view.description">Description not avalible due 'The Decimation'. Consult with Thanos</p>
+        </ion-label>
+        <ion-button fill="outline" (click)="presentActionSheet(view.id, 'events', view.title)" slot="end">More</ion-button>
+      </ion-card-content>
+    </ion-item>
+    <ion-item *ngFor="let view of viewReadSt | paginate: { itemsPerPage: 10, currentPage: cp }">
+      <ion-card-content>
+        <ion-avatar slot="start">
+          <img src="../../assets/img/Avengers.webp" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ view.title }}</h2>
+          <h2>{{ view.fullName }}</h2>
+          <h2>{{ view.name }}</h2>
+          <p *ngIf="view.description">{{ view.description }}</p>
+          <p *ngIf="!view.description">Description not avalible due 'The Decimation'. Consult with Thanos</p>
+        </ion-label>
+        <ion-button fill="outline" (click)="presentActionSheet(view.id, 'stories', view.title)" slot="end">More</ion-button>
+      </ion-card-content>
+    </ion-item>
+    <ion-item *ngFor="let view of viewReadCr | paginate: { itemsPerPage: 10, currentPage: cp }">
+      <ion-card-content>
+        <ion-avatar slot="start">
+          <img src="{{ view.thumbnail.path }}.{{ view.thumbnail.extension }}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ view.fullName }}</h2>
+          <p *ngIf="view.description">{{ view.description }}</p>
+          <p *ngIf="!view.description">Description not avalible due 'The Decimation'. Consult with Thanos</p>
+        </ion-label>
+        <ion-button fill="outline" (click)="presentActionSheet(view.id, 'creator', view.fullName)" slot="end">More</ion-button>
+      </ion-card-content>
+    </ion-item>
+    <ion-item *ngFor="let view of viewReadCh | paginate: { itemsPerPage: 10, currentPage: cp }">
+      <ion-card-content>
+        <ion-avatar slot="start">
+          <img src="{{ view.thumbnail.path }}.{{ view.thumbnail.extension }}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ view.name }}</h2>
+          <p *ngIf="view.description">{{ view.description }}</p>
+          <p *ngIf="!view.description">Description not avalible due 'The Decimation'. Consult with Thanos</p>
+        </ion-label>
+        <ion-button fill="outline" (click)="presentActionSheet(view.id, 'character', view.name)" slot="end">More</ion-button>
+      </ion-card-content>
+    </ion-item>
+  </ion-list>
+
+  <div style="text-align: center;">
+    <pagination-controls (pageChange)="cp = $event" previousLabel="Back" nextLabel="Next"></pagination-controls>
+  </div>
 </ion-content>

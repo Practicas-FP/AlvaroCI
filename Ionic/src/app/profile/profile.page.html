@@ -3,7 +3,61 @@
     <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+  <ion-slides>
+    <ion-slide>
+      <div *ngIf="userPhoto" class="slide">
+        <img [src]="picture.photo || userPhoto" />
+        <h2>Welcome {{ userName }}</h2>
+        <section>
+          <br>
+          <header>¿Do you want change your name?</header>
+          <ion-input type="text" #name placeholder="New name..." required></ion-input>
+          <ion-button expand="block" (click)="changeName(name.value)">Change name</ion-button>
+        </section>
+        <section>
+          <br>
+          <header>¿Do you want change your photo?</header>
+          <ion-button expand="block" (click)="takePicture()">Change your photo</ion-button>
+        </section>
+      </div>
+      <div *ngIf="!userPhoto" class="slide">
+        <img src="../../assets/img/Avengers.webp" width="150px" />
+        <h2>Welcome {{ userName2 }}</h2>
+        <section>
+          <br>
+          <header>¿Do you want change your name?</header>
+          <ion-input type="text" #name placeholder="New name..." required></ion-input>
+          <ion-button expand="block" (click)="changeName(name.value)">Change name</ion-button>
+        </section>
+        <section>
+          <br>
+          <header>¿Do you want change your photo?</header>
+          <ion-button expand="block" (click)="takePicture()">Change your photo</ion-button>
+        </section>
+      </div>
+    </ion-slide>
 
-<ion-content>
+    <ion-slide>
+      <div class="slide">
+        <img src="../../assets/img/favourites.png" width="150px" />
+        <h2>Favourites in list: {{ countFav }}</h2>
+        <section>
+          <br>
+          <ion-button expand="block" [routerLink]="['/favourites']">Review Favourites</ion-button>
+        </section>
+      </div>
+    </ion-slide>
 
+    <ion-slide>
+      <div class="slide">
+        <img src="../../assets/img/libro-abierto.png" width="150px" />
+        <h2>Read saved: {{ countRead }}</h2>
+        <section>
+          <br>
+          <ion-button expand="block" [routerLink]="['/read']">Review Read</ion-button>
+        </section>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

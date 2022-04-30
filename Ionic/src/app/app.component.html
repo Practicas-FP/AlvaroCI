@@ -5,8 +5,11 @@
         <ion-list id="inbox-list">
           <ion-list-header>Marvel App</ion-list-header>
           <ion-note *ngIf="!logueado">Hello MARVEL Fan</ion-note>
-          <ion-note *ngIf="logueado">Hello {{ userName }}</ion-note>
-          <img  *ngIf="logueado" src="{{ userPhoto }}" width="30px" height="30px" class="img-fluid"
+          <ion-note *ngIf="logueado && userName">Hello {{ userName }}</ion-note>
+          <ion-note *ngIf="logueado && !userName">Hello {{ userName2 }}</ion-note>
+          <img  *ngIf="logueado && userPhoto || picture.photo" [src]="picture.photo || userPhoto" width="30px" height="30px" class="img-fluid"
+            style="border-radius: 50%, margin= 10px, border= 4px solid" />
+            <img  *ngIf="logueado && !userPhoto" src="../assets/img/Avengers.webp" width="30px" height="30px" class="img-fluid"
             style="border-radius: 50%, margin= 10px, border= 4px solid" />
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
