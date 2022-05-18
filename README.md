@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Formacion-Accenture/AlvaroCI.git">
-    <img src="images/logo.png" alt="Logo" width="120" height="80">
+    <img src="./images/logo.png" alt="Logo" width="120" height="120">
   </a>
 
   <h3 align="center">Pool Interactive</h3>
@@ -25,7 +25,7 @@
     <br />
     <a href="https://aci-marvel-angular.netlify.app">View Demo of Angular</a>
     ·
-    <a href="">View Demo of Ionic</a>
+    <a href="https://aci-marvel-ionic.netlify.app">View Demo of Ionic</a>
     ·
     <a href="">View Demo of Kotlin</a>
     ·
@@ -39,6 +39,7 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
+      <a href="#screenshots-project">Screenshots Of The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -63,9 +64,47 @@ Here's why:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+<!-- SCREENSHOTS -->
+## Screenshots Of The Project
+- [x] <a href="https://github.com/Formacion-Accenture/AlvaroCI/tree/main/Angular">Angular</a>
+  <br />
+  <img src="./images/angular/angular_screenshot_login.png" alt="Logo" width="33.3%" height="240">
+  <img src="./images/angular/angular_screenshot_profile.png" alt="Logo" width="33.3%" height="240">
+  <img src="./images/angular/angular_screenshot_search.png" alt="Logo" width="30%" height="240">
+  <br />
+  <img src="./images/angular/angular_screenshot_series.png" alt="Logo" width="33.3%" height="240">
+  <img src="./images/angular/angular_screenshot_details.png" alt="Logo" width="33.3%" height="240">
+  <img src="./images/angular/angular_screenshot_firebase.png" alt="Logo" width="30%" height="240">
+  <br />
+- [x] <a href="https://github.com/Formacion-Accenture/AlvaroCI/tree/main/Ionic">Ionic</a>
+  <br />
+  <img src="./images/ionic/ionic_screenshot_search.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_options.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_details.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_sidebar.png" alt="Logo" width="22%" height="350">
+  <br />
+  <img src="./images/ionic/ionic_screenshot_login.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_camera.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_profile.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_profile2.png" alt="Logo" width="22%" height="350">
+  <br />
+  <img src="./images/ionic/ionic_screenshot_profile3.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_read.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_firebase.png" alt="Logo" width="50%" height="350">
+  <br />
+- [x] Kotlin
+  <h1>Under Development</h1>
+  <br />
+
+- [x] Flutter
+  <h1>Under Development</h1>
+  <br />
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+Here we have the official documentation of the frameworks that I've been working this few months.
 
 * [Angular](https://angular.io/)
 * [Ionic](https://ionic.io/)
