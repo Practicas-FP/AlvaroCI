@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Marvel</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_gallery">Galeria</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="btn_register">Registrarse</string>
+    <string name="btn_SignIn">Acceder</string>
+    <string name="menu_logout">Cerrar Sesión</string>
+    <string name="title_AuthActivity">Inicio de sesión</string>
+    <string name="title_HomeActivity">Inicio</string>
+    <string name="menu_settings">Ajustes</string>
+    <string name="btn_change_name">Modificar nombre</string>
+    <string name="btn_camera">Modificar foto</string>
+    <string name="hint_username">Nuevo nombre...</string>
+    <string name="menu_characters">Personajes</string>
+    <string name="menu_Search">Buscar por nombre...</string>
+</resources>
