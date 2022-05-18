@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Formacion-Accenture/AlvaroCI.git">
-    <img src="images/logo.png" alt="Logo" width="120" height="80">
+    <img src="./images/logo.png" alt="Logo" width="120" height="120">
   </a>
 
   <h3 align="center">Pool Interactive</h3>
@@ -39,6 +39,7 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
+      <a href="#screenshots-project">Screenshots Of The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -60,6 +61,44 @@ Here's why:
 * The UI used is so basic for the user, by the way, the code, is so scalable and intuitive for developers.
 * Has been made without any template. Everything is homemade.
 * All the registers are save in the same Database, why? for one reason, to be multiplatform.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- SCREENSHOTS -->
+## Screenshots Of The Project
+- [x] Angular
+  <br />
+  <img src="./images/angular/angular_screenshot_login.png" alt="Logo" width="33.3%" height="240">
+  <img src="./images/angular/angular_screenshot_profile.png" alt="Logo" width="33.3%" height="240">
+  <img src="./images/angular/angular_screenshot_search.png" alt="Logo" width="30%" height="240">
+  <br />
+  <img src="./images/angular/angular_screenshot_series.png" alt="Logo" width="33.3%" height="240">
+  <img src="./images/angular/angular_screenshot_details.png" alt="Logo" width="33.3%" height="240">
+  <img src="./images/angular/angular_screenshot_firebase.png" alt="Logo" width="30%" height="240">
+  <br />
+- [x] Ionic
+  <br />
+  <img src="./images/ionic/ionic_screenshot_search.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_options.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_details.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_sidebar.png" alt="Logo" width="22%" height="350">
+  <br />
+  <img src="./images/ionic/ionic_screenshot_login.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_camera.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_profile.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_profile2.png" alt="Logo" width="22%" height="350">
+  <br />
+  <img src="./images/ionic/ionic_screenshot_profile3.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_read.png" alt="Logo" width="22%" height="350">
+  <img src="./images/ionic/ionic_screenshot_firebase.png" alt="Logo" width="50%" height="350">
+  <br />
+- [x] Kotlin
+  <h1>Under Development</h1>
+  <br />
+
+- [x] Flutter
+  <h1>Under Development</h1>
+  <br />
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
