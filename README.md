@@ -66,7 +66,7 @@ Here's why:
 
 <!-- SCREENSHOTS -->
 ## Screenshots Of The Project
-- [x] Angular
+- [x] <a href="https://github.com/Formacion-Accenture/AlvaroCI/tree/main/Angular">Angular</a>
   <br />
   <img src="./images/angular/angular_screenshot_login.png" alt="Logo" width="33.3%" height="240">
   <img src="./images/angular/angular_screenshot_profile.png" alt="Logo" width="33.3%" height="240">
@@ -76,7 +76,7 @@ Here's why:
   <img src="./images/angular/angular_screenshot_details.png" alt="Logo" width="33.3%" height="240">
   <img src="./images/angular/angular_screenshot_firebase.png" alt="Logo" width="30%" height="240">
   <br />
-- [x] Ionic
+- [x] <a href="https://github.com/Formacion-Accenture/AlvaroCI/tree/main/Ionic">Ionic</a>
   <br />
   <img src="./images/ionic/ionic_screenshot_search.png" alt="Logo" width="22%" height="350">
   <img src="./images/ionic/ionic_screenshot_options.png" alt="Logo" width="22%" height="350">
@@ -104,7 +104,7 @@ Here's why:
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+Here we have the official documentation of the frameworks that I've been working this few months.
 
 * [Angular](https://angular.io/)
 * [Ionic](https://ionic.io/)
