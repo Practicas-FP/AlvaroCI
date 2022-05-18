@@ -25,7 +25,7 @@
     <br />
     <a href="https://aci-marvel-angular.netlify.app">View Demo of Angular</a>
     ·
-    <a href="">View Demo of Ionic</a>
+    <a href="https://aci-marvel-ionic.netlify.app">View Demo of Ionic</a>
     ·
     <a href="">View Demo of Kotlin</a>
     ·
