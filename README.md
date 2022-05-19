@@ -12,10 +12,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/Formacion-Accenture/AlvaroCI.git">
-    <img src="./images/logo.png" alt="Logo" width="120" height="120">
+    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Logo" width="120" height="120">
   </a>
 
-  <h3 align="center">Pool Interactive</h3>
+  <h3 align="center">Learn Frameworks</h3>
 
   <p align="center">
     An awesome work with differents frameworks but the same API (except Flutter)!
