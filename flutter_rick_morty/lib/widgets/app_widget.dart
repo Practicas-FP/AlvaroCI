@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rick_morty/views/signInPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'app_controller.dart';
-import 'environments/firebase_options.dart';
-import 'main_page.dart';
+import '../environments/firebase_options.dart';
+import '../main_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

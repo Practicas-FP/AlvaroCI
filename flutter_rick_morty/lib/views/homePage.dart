@@ -1,7 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rick_morty/app_controller.dart';
+import 'package:flutter_rick_morty/views/charactersPage.dart';
+import 'package:flutter_rick_morty/views/episodesPage.dart';
+import 'package:flutter_rick_morty/views/locationPage.dart';
+import 'package:flutter_rick_morty/views/profilePage.dart';
+import 'package:flutter_rick_morty/widgets/app_controller.dart';
+
+import '../widgets/profile_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,7 +21,7 @@ class Item {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final Item imgItem = Item(image: 'assets/images/Logo_de_Los_Vengadores.png');
+  late final Item imgItem = Item(image: 'images/Rick_usa.jpg');
   final user = FirebaseAuth.instance.currentUser;
 
   Future signOut() async{
@@ -39,72 +45,50 @@ class _HomePageState extends State<HomePage> {
               leading: const Icon(Icons.home),
               title: const Text('Home'),
               onTap: () {
-                if (kDebugMode) {
-                  print('home');
-                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
               },
             ),
             ListTile(
-              leading: const Icon(Icons.movie_filter_rounded),
-              title: const Text('Movies'),
-              onTap: (){
-                if (kDebugMode) {
-                  print('comics');
-                }
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.account_box_sharp),
+              leading: const Icon(Icons.group_sharp),
               title: const Text('Characters'),
               onTap: (){
-                if (kDebugMode) {
-                  print('comics');
-                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const CharactersPage()),
+                );
               },
             ),
             ListTile(
-              leading: const Icon(Icons.book_online_sharp),
-              title: const Text('Comics'),
-              onTap: () {
-                if (kDebugMode) {
-                  print('comics');
-                }
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.accessibility),
-              title: const Text('Creators'),
-              onTap: () {
-                if (kDebugMode) {
-                  print('creators');
-                }
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.account_balance_outlined),
-              title: const Text('Events'),
-              onTap: () {
-                if (kDebugMode) {
-                  print('event');
-                }
+              leading: const Icon(Icons.location_on_sharp),
+              title: const Text('Locations'),
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LocationPage()),
+                );
               },
             ),
             ListTile(
               leading: const Icon(Icons.tv_sharp),
-              title: const Text('Series'),
+              title: const Text('Episodes'),
               onTap: () {
-                if (kDebugMode) {
-                  print('series');
-                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const EpidosdesPage()),
+                );
               },
             ),
             ListTile(
-              leading: const Icon(Icons.auto_stories),
-              title: const Text('Stories'),
+              leading: const Icon(Icons.change_history_sharp),
+              title: const Text('Profile'),
               onTap: () {
-                if (kDebugMode) {
-                  print('stories');
-                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilePage()),
+                );
               },
             ),
             ListTile(
@@ -118,6 +102,72 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('The Rick & Morty'),
         actions: const [CustomSwitch()],
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 10,),
+          const Expanded(
+            flex: 2,
+            child: CircleAvatar(
+              radius: 135,
+              backgroundImage: AssetImage("images/Rick_usa.jpg"),
+            ),
+          ),
+          Expanded(
+              flex: 3,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const CharactersPage()),
+                      );
+                    },
+                    child: const ProfileItem(
+                      title: "View all the Characters",
+                      icon: Icons.group_sharp,
+                    ),
+                  ),
+                  GestureDetector(
+                      onTap: ()  {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const LocationPage()),
+                        );
+                      },
+                      child: const ProfileItem(
+                          title: "View all the locations",
+                          icon: Icons.location_on_sharp,
+                      ),
+                  ),
+                  GestureDetector(
+                    onTap: ()  {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const EpidosdesPage()),
+                      );
+                    },
+                    child: const ProfileItem(
+                      title: "View all the episodes",
+                      icon: Icons.tv_sharp,
+                    ),
+                  ),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ProfilePage()),
+                        );
+                      },
+                      child: const ProfileItem(
+                        title: "View my profile",
+                        icon: Icons.person_pin,
+                      ))
+                ],
+              ))
+        ],
       ),
     );
   }

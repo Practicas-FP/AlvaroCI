@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                    const SizedBox(height: 10,),
                    const Text(
-                    'Rick needs you for other adventure!',
+                    'Rick needs you for another adventure!',
                     style: TextStyle(
                       fontSize: 20,
                     ), // TextStyle

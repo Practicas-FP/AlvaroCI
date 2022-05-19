@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_rick_morty/app_widget.dart';
+import 'package:flutter_rick_morty/widgets/app_widget.dart';
 import 'environments/firebase_options.dart';
 
 void main() async {
