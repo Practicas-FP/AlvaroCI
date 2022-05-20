@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rick_morty/views/signInPage.dart';
-import 'package:flutter_rick_morty/views/homePage.dart';
+import 'package:flutter_rick_morty/ui/screen/signInPage.dart';
+import 'package:flutter_rick_morty/ui/screen/homePage.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
