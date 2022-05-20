@@ -15,7 +15,7 @@
     <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Logo" width="120" height="120">
   </a>
 
-  <h3 align="center">Learn Frameworks</h3>
+  <h3 align="center">Learning Frameworks</h3>
 
   <p align="center">
     An awesome work with differents frameworks but the same API (except Flutter)!
