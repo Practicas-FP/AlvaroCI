@@ -29,7 +29,7 @@
     ·
     <a href="">View Demo of Kotlin</a>
     ·
-    <a href="">View Demo of Flutter</a>
+    <a href="https://github.com/Practicas-FP/AlvaroCI/raw/main/flutter_rick_morty/APK/WikiRick-ACI.apk">Download Flutter APK</a>
   </p>
 </div>
 
