@@ -1,3 +1,4 @@
+// ignore_for_file: depend_on_referenced_packages
 import 'package:flutter_rick_morty/repository/api_constants.dart';
 import 'package:flutter_rick_morty/repository/model/episode_model.dart';
 import 'package:flutter_rick_morty/repository/service/episode_service.dart';
@@ -24,12 +25,12 @@ class EpisodeServiceImplementation extends EpisodeService {
     } on DioError catch (exc) {
       if (exc.response != null) {
         if (exc.response!.statusCode == 404) {
-          throw Exception("You have reached the end of the character list.");
+          throw Exception("You have reached the end of the episode list.");
         } else {
           throw Exception("${exc.response!.statusCode}: ${exc.response!.statusMessage}");
         }
       } else {
-        throw Exception("Couldn't fetch characters. Is the device online?");
+        throw Exception("Couldn't fetch episodes. Is the device online?");
       }
     }
   }

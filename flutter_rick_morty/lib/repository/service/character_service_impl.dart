@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:dio/dio.dart';
 import 'package:flutter_rick_morty/repository/api_constants.dart';
 import 'package:flutter_rick_morty/repository/model/character_model.dart';

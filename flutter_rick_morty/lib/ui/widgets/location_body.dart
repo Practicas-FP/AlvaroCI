@@ -1,19 +1,12 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rick_morty/ui/widgets/widget_utils.dart';
-import 'package:flutter_rick_morty/repository/model/character_model.dart';
-import 'package:flutter_rick_morty/bloc/character_bloc.dart';
-import 'package:flutter_rick_morty/ui/widgets/character_image_widget.dart';
-import 'package:flutter_rick_morty/ui/screen/character_details.dart';
-
-import '../../bloc/episode_bloc.dart';
 import '../../bloc/location_bloc.dart';
-import '../../repository/model/episode_model.dart';
 import '../../repository/model/location_model.dart';
-import '../screen/episode_details.dart';
 import '../screen/location_details.dart';
-import 'episode_image_widget.dart';
 import 'location_image_widget.dart';
 
 class LocationBody extends StatefulWidget {
@@ -53,7 +46,7 @@ class _LocationBodyState extends State<LocationBody> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: WidgetUtils.buildInfoText(
-                  text: 'No more location',
+                  text: 'No more locations',
                   context: context,
                   size: size,
                   color: Colors.black,
@@ -152,12 +145,12 @@ class _LocationBodyState extends State<LocationBody> {
     );
   }
 
-  // Tile that shows the list of characters.
+  // Tile that shows the list of locations.
   _buildClosed(int index, Size size) {
     return Card(
       child: ListTile(
         // episode Image Avatar.
-        leading: LocationImageWidget(
+        leading: const LocationImageWidget(
           locationImage: 'assets/images/drawer.jpg',
         ),
         // episode Name.
@@ -171,7 +164,7 @@ class _LocationBodyState extends State<LocationBody> {
     );
   }
 
-  // Shows the Detail Screen of the selected character.
+  // Shows the Detail Screen of the selected location.
   _buildOpen(int index) {
     return LocationDetails(location: _locations[index]);
   }

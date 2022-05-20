@@ -15,6 +15,7 @@ class LocationImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: radiusImage,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       child: ClipOval(
         child: CachedNetworkImage(
           imageUrl: locationImage,
@@ -31,7 +32,6 @@ class LocationImageWidget extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: Theme.of(context).colorScheme.primary,
     );
   }
 }

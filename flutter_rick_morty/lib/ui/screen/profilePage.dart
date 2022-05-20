@@ -1,16 +1,29 @@
 // ignore_for_file: file_names
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rick_morty/ui/widgets/profile_widget.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
-
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  File? imageFile;
+  void _getFromCamera()async{
+    XFile? pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+      maxHeight:1080,
+      maxWidth:1080,
+    );
+    setState((){
+      imageFile = File(pickedFile!.path);
+    });
+  }
   final userAuth = FirebaseAuth.instance.currentUser!;
   late String name = "h";
   late String name2 = "g";
@@ -72,11 +85,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        _getFromCamera();
+                      },
                       child: const ProfileItem(
                         title: "Change the profile pic",
                         icon: Icons.camera,
-                      ))
+                      ),
+                  )
                 ],
               ))
         ],

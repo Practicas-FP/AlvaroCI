@@ -1,12 +1,9 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rick_morty/ui/widgets/widget_utils.dart';
-import 'package:flutter_rick_morty/repository/model/character_model.dart';
-import 'package:flutter_rick_morty/bloc/character_bloc.dart';
-import 'package:flutter_rick_morty/ui/widgets/character_image_widget.dart';
-import 'package:flutter_rick_morty/ui/screen/character_details.dart';
-
 import '../../bloc/episode_bloc.dart';
 import '../../repository/model/episode_model.dart';
 import '../screen/episode_details.dart';
@@ -148,12 +145,12 @@ class _EpisodeBodyState extends State<EpisodeBody> {
     );
   }
 
-  // Tile that shows the list of characters.
+  // Tile that shows the list of episodes.
   _buildClosed(int index, Size size) {
     return Card(
       child: ListTile(
         // episode Image Avatar.
-        leading: EpisodeImageWidget(
+        leading: const EpisodeImageWidget(
           episodeImage: 'assets/images/drawer.jpg',
         ),
         // episode Name.
@@ -167,7 +164,7 @@ class _EpisodeBodyState extends State<EpisodeBody> {
     );
   }
 
-  // Shows the Detail Screen of the selected character.
+  // Shows the Detail Screen of the selected episode.
   _buildOpen(int index) {
     return EpisodeDetails(episode: _episodes[index]);
   }

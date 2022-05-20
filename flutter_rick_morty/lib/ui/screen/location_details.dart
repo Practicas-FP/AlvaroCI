@@ -1,10 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rick_morty/repository/model/character_model.dart';
-import 'package:flutter_rick_morty/ui/widgets/character_image_widget.dart';
 import 'package:flutter_rick_morty/ui/widgets/widget_utils.dart';
-
-import '../../repository/model/episode_model.dart';
 import '../../repository/model/location_model.dart';
 import '../widgets/episode_image_widget.dart';
 

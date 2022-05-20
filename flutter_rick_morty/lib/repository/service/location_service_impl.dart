@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter_rick_morty/repository/api_constants.dart';
 import 'package:flutter_rick_morty/repository/model/location_model.dart';
 import 'location_service.dart';
@@ -24,12 +26,12 @@ class LocationServiceImplementation extends LocationService {
     } on DioError catch (exc) {
       if (exc.response != null) {
         if (exc.response!.statusCode == 404) {
-          throw Exception("You have reached the end of the character list.");
+          throw Exception("You have reached the end of the location list.");
         } else {
           throw Exception("${exc.response!.statusCode}: ${exc.response!.statusMessage}");
         }
       } else {
-        throw Exception("Couldn't fetch characters. Is the device online?");
+        throw Exception("Couldn't fetch location. Is the device online?");
       }
     }
   }
