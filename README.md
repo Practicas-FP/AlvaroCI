@@ -11,7 +11,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Formacion-Accenture/AlvaroCI.git">
+  <a href="https://github.com/Practicas-FP/AlvaroCI.git">
     <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Logo" width="120" height="120">
   </a>
 
@@ -20,7 +20,7 @@
   <p align="center">
     An awesome work with differents frameworks but the same API (except Flutter)!
     <br />
-    <a href="https://github.com/Formacion-Accenture/AlvaroCI.git"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Practicas-FP/AlvaroCI.git"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://aci-marvel-angular.netlify.app">View Demo of Angular</a>
@@ -66,7 +66,7 @@ Here's why:
 
 <!-- SCREENSHOTS -->
 ## Screenshots Of The Project
-- [x] <a href="https://github.com/Formacion-Accenture/AlvaroCI/tree/main/Angular">Angular</a>
+- [x] <a href="https://github.com/Practicas-FP/AlvaroCI/tree/main/Angular">Angular</a>
   <br />
   <img src="./images/angular/angular_screenshot_login.png" alt="Logo" width="33.3%" height="240">
   <img src="./images/angular/angular_screenshot_profile.png" alt="Logo" width="33.3%" height="240">
@@ -76,7 +76,7 @@ Here's why:
   <img src="./images/angular/angular_screenshot_details.png" alt="Logo" width="33.3%" height="240">
   <img src="./images/angular/angular_screenshot_firebase.png" alt="Logo" width="30%" height="240">
   <br />
-- [x] <a href="https://github.com/Formacion-Accenture/AlvaroCI/tree/main/Ionic">Ionic</a>
+- [x] <a href="https://github.com/Practicas-FP/AlvaroCI/tree/main/Ionic">Ionic</a>
   <br />
   <img src="./images/ionic/ionic_screenshot_search.png" alt="Logo" width="22%" height="350">
   <img src="./images/ionic/ionic_screenshot_options.png" alt="Logo" width="22%" height="350">
@@ -137,7 +137,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Alvaro C.I - - aljusca@gmail.com
 
-Project Link: [[https://github.com/Formacion-Accenture/AlvaroCI.git](https://github.com/Formacion-Accenture/AlvaroCI.git)]
+Project Link: [[https://github.com/Practicas-FP/AlvaroCI.git](https://github.com/Practicas-FP/AlvaroCI.git)]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
