@@ -110,7 +110,7 @@ Here's why:
   <br />
   <img src="./images/flutter/9-locations.jpg" alt="Logo" width="22%" height="350">
   <img src="./images/flutter/10-details-location.jpg" alt="Logo" width="22%" height="350">
-  <img src="./images/flutter/11-episodes.jpg" alt="Logo" width="50%" height="350">
+  <img src="./images/flutter/11-episodes.jpg" alt="Logo" width="22%" height="350">
   <img src="./images/flutter/12-details-episodes.jpg" alt="Logo" width="22%" height="350">
   <br />
 <p align="right">(<a href="#top">back to top</a>)</p>
