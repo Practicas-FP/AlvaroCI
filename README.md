@@ -97,9 +97,22 @@ Here's why:
   <br />
 
 - [x] Flutter
-  <h1>Under Development</h1>
   <br />
-
+  <img src="./images/flutter/1-splash-screen.jpg" alt="Logo" width="22%" height="350">
+  <img src="./images/flutter/2-login.jpg" alt="Logo" width="22%" height="350">
+  <img src="./images/flutter/3-main.jpg" alt="Logo" width="22%" height="350">
+  <img src="./images/flutter/4-dark-main.jpg" alt="Logo" width="22%" height="350">
+  <br />
+  <img src="./images/flutter/5-sidebar.jpg" alt="Logo" width="22%" height="350">
+  <img src="./images/flutter/6-profile.jpg" alt="Logo" width="22%" height="350">
+  <img src="./images/flutter/7-characters.jpg" alt="Logo" width="22%" height="350">
+  <img src="./images/flutter/8-details-characters.jpg" alt="Logo" width="22%" height="350">
+  <br />
+  <img src="./images/flutter/9-locations.jpg" alt="Logo" width="22%" height="350">
+  <img src="./images/flutter/10-details-location.jpg" alt="Logo" width="22%" height="350">
+  <img src="./images/flutter/11-episodes.jpg" alt="Logo" width="50%" height="350">
+  <img src="./images/flutter/12-details-episodes.jpg" alt="Logo" width="22%" height="350">
+  <br />
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
